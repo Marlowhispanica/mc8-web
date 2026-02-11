@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dossier Comercial · MC8 Málaga TechPark</title>
+  <style>
+    @page { size: A4 landscape; margin: 12mm; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "DM Sans", "Source Sans 3", "Trebuchet MS", sans-serif; color: #0f172a; }
+    .page { page-break-after: always; padding: 6mm; border: 1px solid #e2e8f0; border-radius: 10px; }
+    .page:last-child { page-break-after: auto; }
+    .header { display: flex; justify-content: space-between; font-size: 12px; color: #475569; }
+    .title { font-size: 34px; font-weight: 700; margin: 0 0 10px; letter-spacing: 0.4px; }
+    .subtitle { font-size: 16px; color: #475569; margin: 0 0 18px; }
+    .badge { display: inline-block; background: #22c55e; color: #fff; padding: 6px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; }
+    .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 20px; align-items: center; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; border: 1px solid #e2e8f0; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; background: #f8fafc; }
+    .card h3 { margin: 0 0 8px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; color: #475569; }
+    .card p { margin: 0; font-size: 14px; }
+    .photo { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; border: 1px solid #e2e8f0; }
+    .photo-tall { height: 240px; }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .kpi { border: 1px solid #e2e8f0; border-radius: 12px; padding: 10px; text-align: center; background: #fff; }
+    .kpi .value { font-size: 20px; font-weight: 700; }
+    .kpi .label { font-size: 12px; color: #475569; }
+    .footer { display: flex; justify-content: space-between; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 6px; }
+    .list { margin: 0; padding-left: 18px; font-size: 14px; color: #334155; }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <div class="header"><span>MC8 · Málaga TechPark</span><span>Dossier Comercial</span></div>
+    <div class="hero">
+      <div>
+        <span class="badge">Sede corporativa premium</span>
+        <h1 class="title">MC8 · Málaga TechPark</h1>
+        <p class="subtitle">Edificio de oficinas en alquiler pensado para empresas que buscan flexibilidad, bienestar y una imagen corporativa sólida en el principal parque tecnológico del sur de Europa.</p>
+        <div class="grid-2">
+          <div class="card"><h3>Dirección</h3><p>Calle Marie Curie 8, Campanillas, Málaga</p></div>
+          <div class="card"><h3>Modelo de alquiler</h3><p>Por plantas o edificio completo</p></div>
+        </div>
+      </div>
+      <img src="assets/exterior-building-garden.jpg" alt="Fachada exterior del edificio" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>1/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Resumen ejecutivo</span><span>MC8</span></div>
+    <div>
+      <h2 class="title">Valor diferencial</h2>
+      <p class="subtitle">Un activo corporativo diseñado para maximizar productividad, atracción de talento y crecimiento.</p>
+      <div class="grid-3">
+        <div class="card"><h3>Flexibilidad total</h3><p>Entrega diáfana, llave en mano y escalabilidad real.</p></div>
+        <div class="card"><h3>Bienestar + ESG</h3><p>Espacios exteriores, movilidad eléctrica y confort.</p></div>
+        <div class="card"><h3>Ubicación estratégica</h3><p>En el corazón de Málaga TechPark.</p></div>
+      </div>
+      <div class="grid-2" style="margin-top: 16px;">
+        <img class="photo" src="assets/interior-open-space.jpg" alt="Interior diáfano" />
+        <img class="photo" src="assets/render-terrace.jpg" alt="Terraza exterior" />
+      </div>
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>2/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Málaga TechPark</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Ecosistema líder</h2>
+        <p class="subtitle">Tecnología, innovación y presencia internacional en un entorno altamente competitivo.</p>
+        <div class="kpis">
+          <div class="kpi"><div class="value">+680</div><div class="label">empresas</div></div>
+          <div class="kpi"><div class="value">+70</div><div class="label">internacionales</div></div>
+          <div class="kpi"><div class="value">+25.100</div><div class="label">empleados</div></div>
+          <div class="kpi"><div class="value">+3.400M€</div><div class="label">facturación/año</div></div>
+        </div>
+      </div>
+      <img class="photo photo-tall" src="assets/render-exterior.jpg" alt="Render exterior" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>3/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Ubicación</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Conectividad estratégica</h2>
+        <p class="subtitle">Rápido acceso a infraestructuras, servicios y tejido empresarial.</p>
+        <ul class="list">
+          <li>Accesos desde A-357 y MA-20</li>
+          <li>Servicios y restauración a minutos</li>
+          <li>Entorno empresarial consolidado</li>
+        </ul>
+      </div>
+      <img class="photo photo-tall" src="assets/rooftop-terrace-view.jpg" alt="Vistas desde la azotea" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>4/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Arquitectura exterior</span><span>MC8</span></div>
+    <div class="grid-2">
+      <img class="photo photo-tall" src="assets/exterior-building-garden.jpg" alt="Fachada exterior" />
+      <div>
+        <h2 class="title">Imagen corporativa premium</h2>
+        <p class="subtitle">Volumen sólido con carácter representativo y jardines que elevan la experiencia de llegada.</p>
+        <div class="grid-2">
+          <div class="card"><h3>Fachada</h3><p>Presencia corporativa con identidad propia.</p></div>
+          <div class="card"><h3>Entorno</h3><p>Zonas verdes y accesos cómodos.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>5/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Espacios exteriores</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Terrazas para equipos exigentes</h2>
+        <p class="subtitle">Espacios preparados para reuniones informales, eventos y trabajo al aire libre.</p>
+        <div class="grid-2">
+          <img class="photo" src="assets/render-terrace.jpg" alt="Render terraza" />
+          <img class="photo" src="assets/terrace-covered.jpg" alt="Terraza cubierta" />
+        </div>
+      </div>
+      <img class="photo photo-tall" src="assets/terrace-covered-angle.jpg" alt="Terraza cubierta con vidrio" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>6/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Interiores</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Luz natural + eficiencia</h2>
+        <p class="subtitle">Plantas diáfanas listas para configurar a medida con luz abundante y techos técnicos.</p>
+        <div class="grid-2">
+          <img class="photo" src="assets/INTERIOR.jpg" alt="Interior del edificio" />
+          <img class="photo" src="assets/interior-open-space.jpg" alt="Planta diáfana" />
+        </div>
+      </div>
+      <img class="photo photo-tall" src="assets/interior-glass-partition.jpg" alt="Interior con vidrio" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>7/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Flexibilidad total</span><span>MC8</span></div>
+    <div>
+      <h2 class="title">Adaptado a tu crecimiento</h2>
+      <p class="subtitle">Entrega diáfana, alquiler por plantas o edificio completo y posibilidad de llave en mano.</p>
+      <div class="grid-3">
+        <div class="card"><h3>Entrega diáfana</h3><p>Lista para configurar a medida.</p></div>
+        <div class="card"><h3>Por plantas</h3><p>Escala según tu ritmo.</p></div>
+        <div class="card"><h3>Llave en mano</h3><p>Planos y ejecución personalizados.</p></div>
+      </div>
+      <div class="grid-2" style="margin-top: 16px;">
+        <img class="photo" src="assets/interior-open-space-glass.jpg" alt="Interior diáfano" />
+        <img class="photo" src="assets/interior-columns-windows.jpg" alt="Interior con columnas" />
+      </div>
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>8/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Servicios + ESG</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Sostenibilidad y bienestar</h2>
+        <ul class="list">
+          <li>Parking interior 38 + exterior 13</li>
+          <li>20 cargadores eléctricos</li>
+          <li>Bicis + duchas + vestuarios</li>
+          <li>Accesibilidad universal</li>
+          <li>Seguridad / control de accesos</li>
+          <li>Posibilidad recepción / cafetería</li>
+        </ul>
+      </div>
+      <img class="photo photo-tall" src="assets/interior-person-walking.jpg" alt="Espacio interior" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>9/10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="header"><span>Contacto</span><span>MC8</span></div>
+    <div class="grid-2">
+      <div>
+        <h2 class="title">Solicita información</h2>
+        <p class="subtitle">Agenda una visita y recibe el dossier completo con planos y disponibilidad.</p>
+        <div class="card"><h3>Dirección</h3><p>Calle Marie Curie 8, Campanillas, Málaga</p></div>
+        <div class="card"><h3>Email</h3><p>info@mc8malaga.com</p></div>
+        <div class="card"><h3>Teléfono</h3><p>+34 000 000 000</p></div>
+      </div>
+      <img class="photo photo-tall" src="assets/detail-lattice-vegetation.jpg" alt="Detalle de celosía" />
+    </div>
+    <div class="footer"><span>MC8 · Málaga TechPark</span><span>10/10</span></div>
+  </section>
+</body>
+</html>

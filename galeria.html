@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería · MC8 Málaga TechPark</title>
+  <meta name="description" content="Galería de imágenes del edificio MC8" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-internal">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="container header-inner header-three">
+      <div class="brand">
+        <div class="brand-text">
+          <span class="brand-title">MC<span class="brand-accent">8</span></span>
+          <span class="brand-subtitle">Málaga TechPark</span>
+        </div>
+      </div>
+      <nav class="top-nav nav-pills" aria-label="Navegación principal">
+  <a data-nav data-i18n="nav.home" href="index.html">Inicio</a>
+  <a data-nav data-i18n="nav.specs" href="ficha-tecnica.html">Edificio</a>
+  <a data-nav data-i18n="nav.garden" href="terrazas.html">Jardín y terrazas</a>
+  <a data-nav data-i18n="nav.ecosystem" href="ecosistema.html">Ecosistema</a>
+  <a data-nav data-i18n="nav.flex" href="flexibilidad.html">Flexibilidad</a>
+  <a data-nav data-i18n="nav.gallery" href="galeria.html">Galería</a>
+</nav>
+      <nav class="lang-switch" aria-label="Selector de idioma">
+        <a href="#es" class="lang-btn" data-lang="es" onclick="setLang('es'); return false;" aria-label="Español">
+          <span class="flag flag-es" aria-hidden="true"></span>
+          <span class="lang-label">ES</span>
+        </a>
+        <a href="#en" class="lang-btn" data-lang="en" onclick="setLang('en'); return false;" aria-label="English">
+          <span class="flag flag-en" aria-hidden="true"></span>
+          <span class="lang-label">EN</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1 data-i18n="gallery.h2">Galería</h1>
+        <p class="section-lead" data-i18n="gallery.sub">Recorre los espacios interiores y exteriores del edificio</p>
+        <div class="carousel">
+          <div id="gallery-track" class="carousel-track" aria-label="Galería de imágenes">
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-1" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-2" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-3" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-4" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-5" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-6" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-7" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-8" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-9" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-10" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-11" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-12" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-13" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+            <article class="carousel-item"><div class="img-frame"><img class="lightbox-img" id="img-gallery-14" alt="" onclick="openLightbox(this)" /><div class="img-fallback" aria-hidden="true"></div></div></article>
+          </div>
+        </div>
+        <div class="cta-section" style="margin-top: 28px; padding: 24px; border-radius: 16px;">
+          <div class="hero-actions" style="margin: 0; justify-content: center;">
+            <button type="button" class="btn btn-primary" data-open="lead" data-i18n="hero.cta1">Solicitar información</button>
+            <button type="button" class="btn btn-secondary" data-open="schedule" data-i18n="hero.cta2">Agendar visita</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="schedule-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="schedule" aria-hidden="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="schedule-title">
+      <div class="modal-header">
+        <h2 id="schedule-title" data-i18n="schedule.h2">Agendar visita</h2>
+        <button class="modal-close" type="button" data-close="schedule" aria-label="Cerrar">×</button>
+      </div>
+      <p class="modal-sub" data-i18n="schedule.sub">Déjanos tu disponibilidad y organizaremos la visita</p>
+      <form id="schedule-form" class="lead-form" novalidate>
+        <div class="form-grid">
+          <label class="field">
+            <span data-i18n="schedule.name">Nombre y apellidos</span>
+            <input name="visit_name" type="text" required />
+            <span class="error" data-error-for="visit_name"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="schedule.company">Empresa</span>
+            <input name="visit_company" type="text" required />
+            <span class="error" data-error-for="visit_company"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="schedule.email">Email corporativo</span>
+            <input name="visit_email" type="email" required />
+            <span class="error" data-error-for="visit_email"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="schedule.phone">Teléfono</span>
+            <input name="visit_phone" type="tel" />
+          </label>
+          <label class="field">
+            <span data-i18n="schedule.date">Fecha preferida</span>
+            <input id="visit-date" name="visit_date" type="date" required />
+            <span class="error" data-error-for="visit_date"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="schedule.time">Franja horaria</span>
+            <select name="visit_time" required>
+              <option value="" data-i18n="schedule.timeOpt0">Selecciona</option>
+              <option value="morning" data-i18n="schedule.timeOpt1">Mañana (9:00-12:00)</option>
+              <option value="midday" data-i18n="schedule.timeOpt2">Mediodía (12:00-15:00)</option>
+              <option value="afternoon" data-i18n="schedule.timeOpt3">Tarde (15:00-18:00)</option>
+            </select>
+            <span class="error" data-error-for="visit_time"></span>
+          </label>
+          <label class="field full">
+            <span data-i18n="schedule.notes">Notas</span>
+            <textarea name="visit_notes" rows="3"></textarea>
+          </label>
+        </div>
+        <div class="turnstile">
+          <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="visit-submit" data-i18n="schedule.submit">Solicitar visita</button>
+          <span class="form-status" id="visit-status"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close="lightbox" aria-hidden="true"></div>
+    <div class="lightbox-card" role="dialog" aria-modal="true">
+      <button class="lightbox-nav prev" type="button" data-lightbox="prev" aria-label="Anterior">‹</button>
+      <button class="lightbox-close" type="button" data-close="lightbox" aria-label="Cerrar">×</button>
+      <img id="lightbox-image" alt="" />
+      <button class="lightbox-nav next" type="button" data-lightbox="next" aria-label="Siguiente">›</button>
+    </div>
+  </div>
+
+  <div class="modal" id="lead-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="lead" aria-hidden="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lead-title">
+      <div class="modal-header">
+        <h2 id="lead-title" data-i18n="cta.h2">Solicita información y agenda una visita</h2>
+        <button class="modal-close" type="button" data-close="lead" aria-label="Cerrar">×</button>
+      </div>
+      <p class="modal-sub" data-i18n="cta.p1">Te enviamos el dossier completo y te ayudamos a definir la configuración ideal para tu equipo</p>
+      <form id="lead-form" class="lead-form" novalidate>
+        <div class="form-grid">
+          <label class="field">
+            <span data-i18n="form.name">Nombre y apellidos</span>
+            <input name="name" type="text" required />
+            <span class="error" data-error-for="name"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="form.company">Empresa</span>
+            <input name="company" type="text" required />
+            <span class="error" data-error-for="company"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="form.email">Email corporativo</span>
+            <input name="email" type="email" required />
+            <span class="error" data-error-for="email"></span>
+          </label>
+          <label class="field">
+            <span data-i18n="form.phone">Teléfono</span>
+            <input name="phone" type="tel" />
+          </label>
+          <label class="field">
+            <span data-i18n="form.area">m² aproximados</span>
+            <input name="area" type="number" min="0" placeholder="m²" />
+          </label>
+          <label class="field">
+            <span data-i18n="form.date">Fecha objetivo de entrada</span>
+            <input name="date" type="date" />
+          </label>
+          <label class="field full">
+            <span data-i18n="form.message">Mensaje</span>
+            <textarea name="message" rows="3"></textarea>
+          </label>
+          <label class="field full checkbox">
+            <input name="rgpd" type="checkbox" required />
+            <span data-i18n="form.rgpd">Acepto la política de privacidad (RGPD)</span>
+            <a href="#" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
+            <span class="error" data-error-for="rgpd"></span>
+          </label>
+        </div>
+        <div class="turnstile">
+          <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="submit-btn" data-i18n="form.submit">Enviar solicitud</button>
+          <a id="dossier-link" class="btn btn-outline hidden" href="#" data-i18n="form.dossier">Descargar dossier</a>
+          <span class="form-status" id="form-status"></span>
+        </div>
+      </form>
+    </div>
+  </div>\n\n    <footer class="site-footer">
+    <div class="container footer-inner footer-contact">
+      <div>
+        <span>MC8 · Málaga TechPark</span>
+        <span data-i18n="footer.rights">Todos los derechos reservados</span>
+      </div>
+      <div class="footer-contact-block">
+        <span>Marlow Hispánica SL</span>
+        <span>C/ Claudio Coello 91, Madrid (España)</span>
+        <span>+ 34 91 781 45 40</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flexibilidad · MC8 Málaga TechPark</title>
+  <meta name="description" content="Flexibilidad de alquiler y entrega en MC8" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-internal">
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <header class="site-header">
+  <div class="container header-inner header-three">
+    <div class="brand">
+      <div class="brand-text">
+        <span class="brand-title">MC<span class="brand-accent">8</span></span>
+        <span class="brand-subtitle">Málaga TechPark</span>
+      </div>
+    </div>
+    <nav class="top-nav nav-pills" aria-label="Navegación principal">
+  <a data-nav data-i18n="nav.home" href="index.html">Inicio</a>
+  <a data-nav data-i18n="nav.specs" href="ficha-tecnica.html">Edificio</a>
+  <a data-nav data-i18n="nav.garden" href="terrazas.html">Jardín y terrazas</a>
+  <a data-nav data-i18n="nav.ecosystem" href="ecosistema.html">Ecosistema</a>
+  <a data-nav data-i18n="nav.flex" href="flexibilidad.html">Flexibilidad</a>
+  <a data-nav data-i18n="nav.gallery" href="galeria.html">Galería</a>
+</nav>
+    <nav class="lang-switch" aria-label="Selector de idioma">
+      <a href="#es" class="lang-btn" data-lang="es" onclick="setLang('es'); return false;" aria-label="Español">
+        <span class="flag flag-es" aria-hidden="true"></span>
+        <span class="lang-label">ES</span>
+      </a>
+      <a href="#en" class="lang-btn" data-lang="en" onclick="setLang('en'); return false;" aria-label="English">
+        <span class="flag flag-en" aria-hidden="true"></span>
+        <span class="lang-label">EN</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <h1 class="justify-only" data-i18n="flex.h2">Espacios que se adaptan a tu forma de trabajar</h1>
+        <p class="section-lead justify-only" data-i18n="flex.p1">MC8 se entrega como espacio diáfano, permitiendo a cada empresa diseñar su oficina a medida. El edificio ha sido concebido para evolucionar con el inquilino y adaptarse a los cambios del negocio</p>
+        <div class="media-grid plans-grid">
+          <div class="media-card">
+            <div class="img-frame">
+              <img id="img-plan-pb" alt="" />
+              <div class="img-fallback" aria-hidden="true"></div>
+            </div>
+            <div class="media-body">
+              <h3 data-i18n="flex.plan1">Plano planta baja</h3>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="img-frame">
+              <img id="img-plan-p1" alt="" />
+              <div class="img-fallback" aria-hidden="true"></div>
+            </div>
+            <div class="media-body">
+              <h3 data-i18n="flex.plan2">Plano planta primera</h3>
+            </div>
+          </div>
+        </div>
+        <div class="flex-plans-cta">
+          <button type="button" class="btn btn-primary" data-open="plans" data-i18n="hero.cta3">Planos a medida</button>
+        </div>
+        <div class="media-grid">
+          <div class="media-card">
+            <div class="media-body">
+              <h3 data-i18n="flex.b1.title">Flexibilidad operativa</h3>
+              <ul class="list-check">
+                <li data-i18n="flex.b1.l1">Posibilidad de alquilar edificio completo o por plantas</li>
+                <li data-i18n="flex.b1.l2">Configuración flexible de salas y espacios</li>
+                <li data-i18n="flex.b1.l3">Sistemas que permiten cambios sin obras complejas</li>
+              </ul>
+            </div>
+          </div>
+          <div class="media-card">
+            <div class="media-body">
+              <h3 data-i18n="flex.b2.title">Solución llave en mano</h3>
+              <ul class="list-check">
+                <li data-i18n="flex.b2.l1">Opción de proyecto llave en mano</li>
+                <li data-i18n="flex.b2.l2">Planos y layouts diseñados a medida del cliente</li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="plans-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="plans" aria-hidden="true"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="plans-title">
+      <div class="modal-header">
+        <h2 id="plans-title" data-i18n="plans.h2">Solicitar planos a medida</h2>
+        <button class="modal-close" type="button" data-close="plans" aria-label="Cerrar">×</button>
+      </div>
+      <p class="modal-sub" data-i18n="plans.sub">Cuéntanos tu necesidad y te prepararemos una propuesta de planos adaptada</p>
+      <form id="plans-form" class="lead-form" novalidate>
+  <div class="form-grid">
+    <label class="field">
+      <span data-i18n="plans.name">Nombre y apellidos</span>
+      <input name="plans_name" type="text" required />
+      <span class="error" data-error-for="plans_name"></span>
+    </label>
+    <label class="field">
+      <span data-i18n="plans.company">Empresa</span>
+      <input name="plans_company" type="text" required />
+      <span class="error" data-error-for="plans_company"></span>
+    </label>
+    <label class="field">
+      <span data-i18n="plans.role">Cargo en la empresa</span>
+      <input name="plans_role" type="text" required />
+      <span class="error" data-error-for="plans_role"></span>
+    </label>
+    <label class="field">
+      <span data-i18n="plans.employees">Número estimado de trabajadores</span>
+      <input name="plans_employees" type="number" min="1" required />
+      <span class="error" data-error-for="plans_employees"></span>
+    </label>
+    <label class="field">
+      <span data-i18n="plans.email">Email corporativo</span>
+      <input name="plans_email" type="email" required />
+      <span class="error" data-error-for="plans_email"></span>
+    </label>
+    <label class="field">
+      <span data-i18n="plans.phone">Teléfono</span>
+      <input name="plans_phone" type="tel" />
+    </label>
+    <label class="field">
+      <span data-i18n="plans.area">m² aproximados</span>
+      <input name="plans_area" type="number" min="0" placeholder="m²" />
+    </label>
+    <label class="field">
+      <span data-i18n="plans.date">Fecha objetivo de entrada</span>
+      <input name="plans_date" type="date" />
+    </label>
+    <label class="field">
+      <span data-i18n="plans.typology">Tipología de oficinas</span>
+      <select name="plans_typology" required>
+        <option value="" data-i18n="plans.typologyOpt0">Selecciona</option>
+        <option value="meadow" data-i18n="plans.typologyOpt1">Pradera</option>
+        <option value="collaborative" data-i18n="plans.typologyOpt2">Colaborativo</option>
+        <option value="mixed" data-i18n="plans.typologyOpt3">Mixto</option>
+        <option value="private" data-i18n="plans.typologyOpt4">Despachos</option>
+      </select>
+      <span class="error" data-error-for="plans_typology"></span>
+    </label>
+    <label class="field full">
+      <span data-i18n="plans.needs">Necesidades y uso previsto</span>
+      <textarea name="plans_needs" rows="3"></textarea>
+    </label>
+    <label class="field full checkbox">
+      <input name="plans_rgpd" type="checkbox" required />
+      <span data-i18n="form.rgpd">Acepto la política de privacidad (RGPD)</span>
+      <a href="#" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
+      <span class="error" data-error-for="plans_rgpd"></span>
+    </label>
+  </div>
+  <div class="turnstile">
+    <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+  </div>
+  <div class="form-actions">
+    <button class="btn btn-primary" type="submit" id="plans-submit" data-i18n="plans.submit">Solicitar planos</button>
+    <span class="form-status" id="plans-status"></span>
+  </div>
+</form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-inner footer-contact">
+      <div>
+        <span>MC8 · Málaga TechPark</span>
+        <span data-i18n="footer.rights">Todos los derechos reservados</span>
+      </div>
+      <div class="footer-contact-block">
+        <span>Marlow Hispánica SL</span>
+        <span>C/ Claudio Coello 91, Madrid (España)</span>
+        <span>+ 34 91 781 45 40</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
