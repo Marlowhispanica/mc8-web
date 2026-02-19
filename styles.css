@@ -1044,6 +1044,17 @@ input, select, textarea {
   min-height: 18px;
 }
 
+.form-status.success {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.form-status .status-icon {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: 700;
+}
+
 .hidden {
   display: none;
 }

@@ -268,6 +268,7 @@ const i18n = {
     status: {
       loading: "Enviando…",
       success: "Solicitud enviada. Te contactaremos en breve",
+      thanks: "Gracias, hemos recibido tu solicitud.",
       error: "No se pudo enviar. Inténtalo de nuevo",
       offline: "No se pudo enviar. Guardamos tu solicitud localmente"
     },
@@ -526,6 +527,7 @@ const i18n = {
     status: {
       loading: "Sending…",
       success: "Request sent. We will contact you shortly",
+      thanks: "Thanks, we've received your request.",
       error: "Could not send. Please try again",
       offline: "Could not send. We saved your request locally"
     },
@@ -802,6 +804,32 @@ function applyTurnstileSiteKey() {
 
 applyTurnstileSiteKey();
 
+function setFormRedirect(form, key) {
+  const input = form.querySelector("input[name='redirect']");
+  if (!input) return;
+  try {
+    const url = new URL(window.location.href);
+    if (url.protocol !== "https:") return;
+    url.searchParams.set("success", key);
+    input.value = url.toString();
+  } catch (e) {}
+}
+
+function showFormSuccess(statusEl) {
+  if (!statusEl) return;
+  statusEl.classList.add("success");
+  statusEl.innerHTML = `<span class="status-icon">&#10003;</span>${i18n[currentLang].status.thanks}`;
+}
+
+function getSuccessKey() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("success");
+  } catch (e) {
+    return null;
+  }
+}
+
 function getTurnstileToken(form) {
   const input = form.querySelector("input[name='cf-turnstile-response']");
   return input ? input.value.trim() : "";
@@ -832,6 +860,12 @@ async function postForm(url, data, storageKey) {
       body: JSON.stringify(data)
     });
     if (!res.ok) return { ok: false, saved: false };
+    try {
+      const payload = await res.json();
+      if (payload && (payload.success === false || payload.ok === false)) {
+        return { ok: false, saved: false };
+      }
+    } catch (e) {}
     return { ok: true, saved: false };
   } catch (err) {
     saveLocal(storageKey, data);
@@ -857,9 +891,9 @@ function setupForm() {
     ["name", "company", "email", "rgpd"].forEach(name => setError(name, ""));
   }
 
-  function validate() {
-    clearErrors();
-    let ok = true;
+    function validate() {
+      clearErrors();
+      let ok = true;
 
     const name = form.name.value.trim();
     const company = form.company.value.trim();
@@ -883,52 +917,19 @@ function setupForm() {
       ok = false;
     }
 
-    return ok;
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    status.textContent = "";
-    dossierLink.classList.add("hidden");
-
-    if (!validate()) return;
-
-    submitBtn.disabled = true;
-    status.textContent = i18n[currentLang].status.loading;
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.rgpd = !!form.rgpd.checked;
-    data.turnstileToken = getTurnstileToken(form);
-    if (!data.turnstileToken) {
-      status.textContent = i18n[currentLang].errors.turnstile;
-      submitBtn.disabled = false;
-      return;
+      return ok;
     }
 
-    postForm("/api/lead", data, "mc8_leads")
-      .then((result) => {
-        if (result.ok) {
-          status.textContent = i18n[currentLang].status.success;
-          dossierLink.classList.remove("hidden");
-          dossierLink.setAttribute("href", "#");
-          form.reset();
-          resetTurnstile(form);
-        } else if (result.saved) {
-          status.textContent = i18n[currentLang].status.offline;
-        } else {
-          status.textContent = i18n[currentLang].status.error;
-        }
-      })
-      .catch(() => {
-        status.textContent = i18n[currentLang].status.error;
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-      });
-  });
+    setFormRedirect(form, "lead");
+    const successKey = getSuccessKey();
+    if (successKey === "lead") {
+      if (dossierLink) dossierLink.classList.remove("hidden");
+      if (dossierLink) dossierLink.setAttribute("href", "#");
+      showFormSuccess(status);
+    }
 
-  formInitialized = true;
-}
+    formInitialized = true;
+  }
 
 let carouselInitialized = false;
 function setupCarousel() {
@@ -1018,45 +1019,19 @@ function setupScheduleModal() {
     if (!date) { setError("visit_date", i18n[currentLang].errors.required); ok = false; }
     if (!time) { setError("visit_time", i18n[currentLang].errors.required); ok = false; }
 
-    return ok;
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    status.textContent = "";
-    if (!validate()) return;
-    submitBtn.disabled = true;
-    status.textContent = i18n[currentLang].status.loading;
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.turnstileToken = getTurnstileToken(form);
-    if (!data.turnstileToken) {
-      status.textContent = i18n[currentLang].errors.turnstile;
-      submitBtn.disabled = false;
-      return;
+      return ok;
     }
 
-    postForm("/api/visit", data, "mc8_visits")
-      .then((result) => {
-        if (result.ok) {
-          status.textContent = i18n[currentLang].status.success;
-          form.reset();
-          resetTurnstile(form);
-          return;
-        }
-        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
-      })
-      .catch(() => {
-        status.textContent = i18n[currentLang].status.error;
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-      });
-  });
+    setFormRedirect(form, "schedule");
+    const successKey = getSuccessKey();
+    if (successKey === "schedule") {
+      openModal();
+      showFormSuccess(status);
+    }
 
-  const today = new Date().toISOString().split("T")[0];
-  const dateInput = document.getElementById("visit-date");
-  if (dateInput) dateInput.setAttribute("min", today);
+    const today = new Date().toISOString().split("T")[0];
+    const dateInput = document.getElementById("visit-date");
+    if (dateInput) dateInput.setAttribute("min", today);
 
   scheduleInitialized = true;
 }
@@ -1082,12 +1057,15 @@ function setupLeadModal() {
     btn.addEventListener("click", openModal);
   });
 
-  document.querySelectorAll("[data-close='lead']").forEach(btn => {
-    btn.addEventListener("click", closeModal);
-  });
+    document.querySelectorAll("[data-close='lead']").forEach(btn => {
+      btn.addEventListener("click", closeModal);
+    });
 
-  leadModalInitialized = true;
-}
+    const successKey = getSuccessKey();
+    if (successKey === "lead") openModal();
+
+    leadModalInitialized = true;
+  }
 
 let plansModalInitialized = false;
 function setupPlansModal() {
@@ -1125,9 +1103,9 @@ function setupPlansModal() {
     ["plans_name", "plans_company", "plans_role", "plans_employees", "plans_email", "plans_typology", "plans_rgpd"].forEach(name => setError(name, ""));
   }
 
-  function validate() {
-    clearErrors();
-    let ok = true;
+    function validate() {
+      clearErrors();
+      let ok = true;
     const name = form.plans_name.value.trim();
     const company = form.plans_company.value.trim();
     const email = form.plans_email.value.trim();
@@ -1144,45 +1122,18 @@ function setupPlansModal() {
     if (!typology) { setError("plans_typology", i18n[currentLang].errors.required); ok = false; }
     if (!rgpd) { setError("plans_rgpd", i18n[currentLang].errors.rgpd); ok = false; }
 
-    return ok;
-  }
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    status.textContent = "";
-    if (!validate()) return;
-    submitBtn.disabled = true;
-    status.textContent = i18n[currentLang].status.loading;
-
-    const data = Object.fromEntries(new FormData(form).entries());
-    data.plans_rgpd = !!form.plans_rgpd.checked;
-    data.turnstileToken = getTurnstileToken(form);
-    if (!data.turnstileToken) {
-      status.textContent = i18n[currentLang].errors.turnstile;
-      submitBtn.disabled = false;
-      return;
+      return ok;
     }
 
-    postForm("/api/plans", data, "mc8_plans")
-      .then((result) => {
-        if (result.ok) {
-          status.textContent = i18n[currentLang].status.success;
-          form.reset();
-          resetTurnstile(form);
-          return;
-        }
-        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
-      })
-      .catch(() => {
-        status.textContent = i18n[currentLang].status.error;
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-      });
-  });
+    setFormRedirect(form, "plans");
+    const successKey = getSuccessKey();
+    if (successKey === "plans") {
+      openModal();
+      showFormSuccess(status);
+    }
 
-  plansModalInitialized = true;
-}
+    plansModalInitialized = true;
+  }
 
 let tabsInitialized = false;
 function setupTabs() {
