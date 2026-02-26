@@ -1,13 +1,13 @@
 ﻿const imageMap = {
-  hero: "assets/exterior-building-garden_1.jpg",
-  terrace: "assets/foto%20terraza%20sol.png",
-  exterior: "assets/render-terrace.jpg",
-  interior: "assets/INTERIOR.jpg",
-  map: "assets/rooftop-terrace-view.jpg",
-  logo: "assets/Logo.jpg",
-  planPb: "assets/Plano%20planta%20Baja.jpg",
-  planP1: "assets/Plano%20planta%20primera%20.jpg",
-  exteriorV2: "assets/exterior-v2.jpg"
+  hero: "assets/exterior-building-garden-wide.jpg",
+  terrace: "assets/rooftop-terrace-trees-view.jpg",
+  exterior: "assets/OLD-render-terrace.jpg",
+  interior: "assets/interior-open-space-columns-wide.jpg",
+  map: "assets/rooftop-terrace-city-view.jpg",
+  logo: "assets/OLD-logo.jpg",
+  planPb: "assets/OLD-plano-planta-baja.jpg",
+  planP1: "assets/OLD-plano-planta-primera.jpg",
+  exteriorV2: "assets/exterior-courtyard-stairs.jpg"
 };
 
 const TURNSTILE_SITE_KEY = "YOUR_TURNSTILE_SITE_KEY";
@@ -94,7 +94,7 @@ const i18n = {
       b2: {
         title: "Solución llave en mano",
         l1: "Opción de proyecto llave en mano",
-        l2: "Planos y layouts diseñados a medida del cliente"
+        l2: "Planos y layouts Diseñados a medida del cliente"
       },
       b3: {
         title: ""
@@ -104,7 +104,7 @@ const i18n = {
       h2: "ESG / Sostenibilidad",
       p1: "Un activo alineado con políticas ESG: movilidad eléctrica, eficiencia energética y espacios saludables para el talento",
       li1: "Infraestructura para vehículos eléctricos",
-      li2: "Diseño orientado a eficiencia y confort térmico",
+      li2: "diseño orientado a eficiencia y confort térmico",
       li3: "Bienestar como ventaja competitiva"
     },
     mtp: {
@@ -113,7 +113,7 @@ const i18n = {
       m1: { value: "+680", label: "empresas" },
       m2: { value: "+70", label: "compañías internacionales" },
       m3: { value: "+25.100", label: "empleados" },
-      m4: { value: "+3.400 M€", label: "facturados/año" }
+      m4: { value: "+3.400 m²", label: "facturados/año" }
     },
     services: {
       h2: "Servicios del edificio",
@@ -136,7 +136,7 @@ const i18n = {
       b1: {
         title: "Arquitectura y diseño",
         l1: "Proyecto firmado por Ruiz Granados Arquitectos",
-        l2: "Diseño sobrio, atemporal y representativo",
+        l2: "diseño sobrio, atemporal y representativo",
         l3: "Imagen corporativa sólida para empresas que buscan posicionamiento"
       },
       b2: {
@@ -249,13 +249,13 @@ const i18n = {
       alt5: "Interior con tabiques acristalados y techo de lamas",
       alt6: "Interior con cerramiento de vidrio y zona diáfana",
       alt7: "Interior con techo naranja y ventanales hacia terraza",
-      alt8: "Planta diáfana con columnas y múltiples ventanas",
+      alt8: "Planta diáfana con columnas y m²ltiples ventanas",
       alt9: "Detalle de celosía con vegetación exterior",
       alt10: "Zona diáfana con columnas y vidrio al fondo",
       alt11: "Azotea/terraza exterior con vistas a la montaña",
       alt12: "Interior con columnas y luz natural",
       alt13: "Interior con persona caminando junto a ventanales",
-      alt14: "Fachada exterior del edificio y jardín",
+      alt14: "Fachada exterior del edificio y Jardín",
       alt15: "Detalle interior de ventanas y columna",
       alt16: "Vista interior hacia celosía y vegetación"
     },
@@ -276,7 +276,7 @@ const i18n = {
       hero: "Fachada exterior del edificio con jardines",
       terrace: "Terraza cubierta con suelo de hormigón y celosía",
       exterior: "Render exterior del edificio",
-      interior: "Planta diáfana con columnas y múltiples ventanas",
+      interior: "Planta diáfana con columnas y m²ltiples ventanas",
       map: "Azotea con vistas del entorno",
       logo: "Logotipo MC8",
       planPb: "Plano de planta baja",
@@ -319,7 +319,7 @@ const i18n = {
     },
     outdoor: {
       h2: "Working outdoors is part of the MC8 experience",
-      sub: "The project includes high‑value outdoor areas that extend the office beyond traditional limits. Gardens and terraces become places to work, meet and recharge",
+      sub: "The project includes high-value outdoor areas that extend the office beyond traditional limits. Gardens and terraces become places to work, meet and recharge",
       card1: {
         title: "Main terrace",
         l1: "600–700 m² rooftop terrace",
@@ -391,7 +391,7 @@ const i18n = {
     },
     building: {
       h2: "A building that redefines office standards",
-      p1: "MC8 is reborn through a full renovation that upgrades the building to the most demanding office-market standards. The project combines energy efficiency, interior comfort, and architecture designed for today’s real business needs",
+      p1: "MC8 is reborn through a full renovation that upgrades the building to the most demanding office-market standards. The project combines energy efficiency, interior comfort, and architecture designed for today's real business needs",
       b1: {
         title: "Architecture & design",
         l1: "Project by Ruiz Granados Arquitectos",
@@ -423,11 +423,11 @@ const i18n = {
       sourceLabel: "Source:",
       n1: "IMEC receives authorization to build at Málaga TechPark (Jan 17, 2025)",
       s1: "Spanish Ministry of Science",
-      n2: "Agreement for IMEC’s chip innovation center in Málaga TechPark (Jul 16, 2024)",
+      n2: "Agreement for IMEC's chip innovation center in Málaga TechPark (Jul 16, 2024)",
       s2: "Spanish Ministry of Science",
       n3: "Kadans will transform the NODE II building in Málaga TechPark (Feb 5, 2024)",
       s3: "Kadans Science Partner",
-      n4: "Málaga TechPark: economic impact equals 2.3% of Andalusia’s GDP (Nov 25, 2025)",
+      n4: "Málaga TechPark: economic impact equals 2.3% of Andalusia's GDP (Nov 25, 2025)",
       s4: "Regional Government of Andalusia",
       n5: "Government, Andalusia and imec sign MoU for a new chip pilot line (Mar 13, 2024)",
       s5: "imec",
@@ -480,7 +480,7 @@ const i18n = {
     },
     cta: {
       h2: "Request information",
-      p1: "We’ll send you the full dossier and help define the ideal configuration for your team",
+      p1: "We'll send you the full dossier and help define the ideal configuration for your team",
       btn1: "Request information",
       btn2: "Schedule a tour"
     },
@@ -546,20 +546,20 @@ const i18n = {
 };
 
 const galleryImages = [
-  { id: "img-gallery-1", src: "assets/exterior-building-garden.jpg", altKey: "alt14" },
-  { id: "img-gallery-2", src: "assets/rooftop-terrace-view.jpg", altKey: "alt11" },
-  { id: "img-gallery-3", src: "assets/terrace-covered.jpg", altKey: "alt3" },
-  { id: "img-gallery-4", src: "assets/terrace-covered-angle.jpg", altKey: "alt4" },
-  { id: "img-gallery-5", src: "assets/interior-open-space.jpg", altKey: "alt8" },
-  { id: "img-gallery-6", src: "assets/interior-glass-partition.jpg", altKey: "alt5" },
-  { id: "img-gallery-7", src: "assets/interior-glass-wide.jpg", altKey: "alt6" },
-  { id: "img-gallery-8", src: "assets/interior-orange-ceiling.jpg", altKey: "alt7" },
-  { id: "img-gallery-9", src: "assets/interior-open-space-glass.jpg", altKey: "alt10" },
-  { id: "img-gallery-10", src: "assets/interior-columns-windows.jpg", altKey: "alt12" },
-  { id: "img-gallery-11", src: "assets/interior-person-walking.jpg", altKey: "alt13" },
-  { id: "img-gallery-12", src: "assets/interior-windows-column-detail.jpg", altKey: "alt15" },
-  { id: "img-gallery-13", src: "assets/interior-window-lattice.jpg", altKey: "alt16" },
-  { id: "img-gallery-14", src: "assets/detail-lattice-vegetation.jpg", altKey: "alt9" }
+  { id: "img-gallery-1", src: "assets/exterior-building-corner-sky.jpg", altKey: "alt14" },
+  { id: "img-gallery-2", src: "assets/exterior-courtyard-orange-building.jpg", altKey: "alt11" },
+  { id: "img-gallery-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
+  { id: "img-gallery-4", src: "assets/exterior-building-garden-wide.jpg", altKey: "alt4" },
+  { id: "img-gallery-5", src: "assets/rooftop-terrace-wide.jpg", altKey: "alt8" },
+  { id: "img-gallery-6", src: "assets/rooftop-terrace-city-view.jpg", altKey: "alt5" },
+  { id: "img-gallery-7", src: "assets/rooftop-orange-building-railings.jpg", altKey: "alt6" },
+  { id: "img-gallery-8", src: "assets/interior-open-space-columns-wide.jpg", altKey: "alt7" },
+  { id: "img-gallery-9", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt10" },
+  { id: "img-gallery-10", src: "assets/interior-glass-partition-wood-ceiling.jpg", altKey: "alt12" },
+  { id: "img-gallery-11", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
+  { id: "img-gallery-12", src: "assets/interior-staircase-skylight-wood-ceiling.jpg", altKey: "alt15" },
+  { id: "img-gallery-13", src: "assets/interior-bathroom-double-sink-mirrors.jpg", altKey: "alt16" },
+  { id: "img-gallery-14", src: "assets/interior-bathroom-toilets.jpg", altKey: "alt9" }
 ];
 
 let currentLang = "es";
@@ -1246,6 +1246,14 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+
+
+
+
+
+
+
 
 
 
