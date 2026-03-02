@@ -1,4 +1,4 @@
-Ôªøconst imageMap = {
+const imageMap = {
   hero: "assets/exterior-building-garden-wide.jpg",
   terrace: "assets/rooftop-terrace-trees-view.jpg",
   exterior: "assets/OLD-render-terrace.jpg",
@@ -27,74 +27,74 @@ const imgIds = {
 const i18n = {
   es: {
     meta: {
-      title: "MC8 ¬∑ M√°laga TechPark ‚Äî Sede corporativa",
-      description: "Alquiler de edificio de oficinas premium en M√°laga TechPark. Flexibilidad total, sostenibilidad, espacios exteriores y bienestar. Solicita informaci√≥n",
-      ogTitle: "MC8 ¬∑ M√°laga TechPark ‚Äî Sede corporativa",
-      ogDescription: "Edificio corporativo premium en M√°laga TechPark. Flexibilidad, bienestar y sostenibilidad. Solicita informaci√≥n"
+      title: "MC8 ∑ M·laga TechPark ó Sede corporativa",
+      description: "Alquiler de edificio de oficinas premium en M·laga TechPark. Flexibilidad total, sostenibilidad, espacios exteriores y bienestar. Solicita informaciÛn",
+      ogTitle: "MC8 ∑ M·laga TechPark ó Sede corporativa",
+      ogDescription: "Edificio corporativo premium en M·laga TechPark. Flexibilidad, bienestar y sostenibilidad. Solicita informaciÛn"
     },
     hero: {
-      eyebrow: "Un edificio sin l√≠mites",
+      eyebrow: "Un edificio sin lÌmites",
       h1: "Una nueva forma de entender la oficina",
       subline: "Un edificio singular, flexible y preparado para evolucionar con tu empresa",
       sub: "",
-      cta1: "Solicitar informaci√≥n",
+      cta1: "Solicitar informaciÛn",
       cta2: "Agendar visita",
       cta3: "Planos a medida",
-      address: "Calle Marie Curie 8, M√°laga",
-      trust1: { value: "2.082 m¬≤", label: "superficie total" },
-      trust2: { value: "1.482 m¬≤", label: "SBA" },
-      trust3: { value: "600 m¬≤", label: "terraza" },
+      address: "Calle Marie Curie 8, M·laga",
+      trust1: { value: "2.082 m≤", label: "superficie total" },
+      trust2: { value: "1.482 m≤", label: "SBA" },
+      trust3: { value: "600 m≤", label: "terraza" },
       trust4: { value: "Dic 2025", label: "disponibilidad" }
     },
-    header: { cta: "Solicitar informaci√≥n" },
-    nav: { home: "Inicio", specs: "Edificio", garden: "Jard√≠n y terrazas", ecosystem: "Ecosistema", flex: "Flexibilidad", gallery: "Galer√≠a" },
+    header: { cta: "Solicitar informaciÛn" },
+    nav: { home: "Inicio", specs: "Edificio", garden: "JardÌn y terrazas", ecosystem: "Ecosistema", flex: "Flexibilidad", gallery: "GalerÌa" },
     design: {
-      h2: "Dise√±ado para trabajar mejor",
-      p1: "Un edificio que combina eficiencia operativa y bienestar: luz natural, ventilaci√≥n, terrazas y distribuciones que priorizan el rendimiento y la retenci√≥n del talento",
+      h2: "DiseÒado para trabajar mejor",
+      p1: "Un edificio que combina eficiencia operativa y bienestar: luz natural, ventilaciÛn, terrazas y distribuciones que priorizan el rendimiento y la retenciÛn del talento",
       li1: "Plantas profundas, flexibles y muy eficientes",
-      li2: "Espacios colaborativos y zonas de concentraci√≥n",
+      li2: "Espacios colaborativos y zonas de concentraciÛn",
       li3: "Imagen corporativa premium y representativa",
-      stat1: { value: "600 m¬≤", label: "terraza cubierta" },
-      stat2: { value: "6", label: "cargadores el√©ctricos" },
+      stat1: { value: "600 m≤", label: "terraza cubierta" },
+      stat2: { value: "6", label: "cargadores elÈctricos" },
       stat3: { value: "51", label: "plazas de parking" }
     },
     outdoor: {
       h2: "Trabajar al aire libre forma parte de la experiencia MC8",
-      sub: "El proyecto incorpora espacios exteriores de alto valor a√±adido que ampl√≠an la oficina m√°s all√° de sus l√≠mites tradicionales. Jardines y terrazas se integran como espacios de trabajo, encuentro y descanso",
+      sub: "El proyecto incorpora espacios exteriores de alto valor aÒadido que amplÌan la oficina m·s all· de sus lÌmites tradicionales. Jardines y terrazas se integran como espacios de trabajo, encuentro y descanso",
       card1: {
         title: "Terraza principal",
-        l1: "600‚Äì700 m¬≤ de terraza en cubierta",
-        l2: "Vistas abiertas a los Montes de M√°laga",
+        l1: "600ñ700 m≤ de terraza en cubierta",
+        l2: "Vistas abiertas a los Montes de M·laga",
         l3: "Espacio ideal para eventos, reuniones informales o trabajo outdoor"
       },
       card2: {
         title: "Jardines y zonas exteriores",
         l1: "Zonas ajardinadas en planta primera",
-        l2: "Relaci√≥n directa interior‚Äìexterior",
-        l3: "Luz natural y ventilaci√≥n como elementos centrales del dise√±o"
+        l2: "RelaciÛn directa interiorñexterior",
+        l3: "Luz natural y ventilaciÛn como elementos centrales del diseÒo"
       },
       card3: {
         title: "Valor para la empresa",
         l1: "Mejora del bienestar y la productividad",
-        l2: "Atractivo para captaci√≥n y retenci√≥n de talento",
+        l2: "Atractivo para captaciÛn y retenciÛn de talento",
         l3: "Refuerzo de cultura corporativa y employer branding"
       }
     },
     flex: {
       h2: "Espacios que se adaptan a tu forma de trabajar",
-      p1: "MC8 se entrega como espacio di√°fano, permitiendo a cada empresa dise√±ar su oficina a medida. El edificio ha sido concebido para evolucionar con el inquilino y adaptarse a los cambios del negocio",
+      p1: "MC8 se entrega como espacio di·fano, permitiendo a cada empresa diseÒar su oficina a medida. El edificio ha sido concebido para evolucionar con el inquilino y adaptarse a los cambios del negocio",
       plan1: "Plano planta baja",
       plan2: "Plano planta primera",
       b1: {
         title: "Flexibilidad operativa",
         l1: "Posibilidad de alquilar edificio completo o por plantas",
-        l2: "Configuraci√≥n flexible de salas y espacios",
+        l2: "ConfiguraciÛn flexible de salas y espacios",
         l3: "Sistemas que permiten cambios sin obras complejas"
       },
       b2: {
-        title: "Soluci√≥n llave en mano",
-        l1: "Opci√≥n de proyecto llave en mano",
-        l2: "Planos y layouts Dise√±ados a medida del cliente"
+        title: "SoluciÛn llave en mano",
+        l1: "OpciÛn de proyecto llave en mano",
+        l2: "Planos y layouts DiseÒados a medida del cliente"
       },
       b3: {
         title: ""
@@ -102,99 +102,99 @@ const i18n = {
     },
     esg: {
       h2: "ESG / Sostenibilidad",
-      p1: "Un activo alineado con pol√≠ticas ESG: movilidad el√©ctrica, eficiencia energ√©tica y espacios saludables para el talento",
-      li1: "Infraestructura para veh√≠culos el√©ctricos",
-      li2: "dise√±o orientado a eficiencia y confort t√©rmico",
+      p1: "Un activo alineado con polÌticas ESG: movilidad elÈctrica, eficiencia energÈtica y espacios saludables para el talento",
+      li1: "Infraestructura para vehÌculos elÈctricos",
+      li2: "diseÒo orientado a eficiencia y confort tÈrmico",
       li3: "Bienestar como ventaja competitiva"
     },
     mtp: {
-      h2: "M√°laga TechPark",
-      p1: "Un ecosistema empresarial l√≠der en el sur de Europa, con fuerte presencia internacional y talento tecnol√≥gico. Un entorno empresarial consolidado, con fuerte presencia internacional y un crecimiento sostenido en empleo e inversi√≥n",
+      h2: "M·laga TechPark",
+      p1: "Un ecosistema empresarial lÌder en el sur de Europa, con fuerte presencia internacional y talento tecnolÛgico. Un entorno empresarial consolidado, con fuerte presencia internacional y un crecimiento sostenido en empleo e inversiÛn",
       m1: { value: "+680", label: "empresas" },
-      m2: { value: "+70", label: "compa√±√≠as internacionales" },
+      m2: { value: "+70", label: "compaÒÌas internacionales" },
       m3: { value: "+25.100", label: "empleados" },
-      m4: { value: "+3.400 m¬≤", label: "facturados/a√±o" }
+      m4: { value: "+3.400 m≤", label: "facturados/aÒo" }
     },
     services: {
       h2: "Servicios del edificio",
       s1: "Parking interior 38 + exterior 13",
-      s2: "6 cargadores el√©ctricos",
+      s2: "6 cargadores elÈctricos",
       s3: "Bicis + duchas + vestuarios",
       s4: "Accesibilidad universal",
       s5: "Seguridad / control de accesos",
-      s6: "Posibilidad de recepci√≥n / cafeter√≠a"
+      s6: "Posibilidad de recepciÛn / cafeterÌa"
     },
     tabs: {
       specs: "Edificio",
-      garden: "Jard√≠n y terrazas",
-      ecosystem: "Ecosistema M√°laga TechPark",
+      garden: "JardÌn y terrazas",
+      ecosystem: "Ecosistema M·laga TechPark",
       flex: "Flexibilidad"
     },
     building: {
-      h2: "Un edificio que redefine los est√°ndares de oficina",
-      p1: "MC8 renace mediante una reforma integral que actualiza el edificio a los est√°ndares m√°s exigentes del mercado de oficinas. El proyecto combina eficiencia energ√©tica, confort interior y una arquitectura pensada para el uso real de las empresas actuales",
+      h2: "Un edificio que redefine los est·ndares de oficina",
+      p1: "MC8 renace mediante una reforma integral que actualiza el edificio a los est·ndares m·s exigentes del mercado de oficinas. El proyecto combina eficiencia energÈtica, confort interior y una arquitectura pensada para el uso real de las empresas actuales",
       b1: {
-        title: "Arquitectura y dise√±o",
+        title: "Arquitectura y diseÒo",
         l1: "Proyecto firmado por Ruiz Granados Arquitectos",
-        l2: "dise√±o sobrio, atemporal y representativo",
-        l3: "Imagen corporativa s√≥lida para empresas que buscan posicionamiento"
+        l2: "diseÒo sobrio, atemporal y representativo",
+        l3: "Imagen corporativa sÛlida para empresas que buscan posicionamiento"
       },
       b2: {
-        title: "Prestaciones t√©cnicas",
-        l1: "Instalaciones de √∫ltima generaci√≥n",
-        l2: "Climatizaci√≥n eficiente y regulaci√≥n independiente",
-        l3: "Iluminaci√≥n LED autorregulable",
-        l4: "Suelos t√©cnicos con mejoras ac√∫sticas"
+        title: "Prestaciones tÈcnicas",
+        l1: "Instalaciones de ˙ltima generaciÛn",
+        l2: "ClimatizaciÛn eficiente y regulaciÛn independiente",
+        l3: "IluminaciÛn LED autorregulable",
+        l4: "Suelos tÈcnicos con mejoras ac˙sticas"
       },
       b3: {
         title: "Sostenibilidad",
-        l1: "Certificaci√≥n LEED",
+        l1: "CertificaciÛn LEED",
         l2: "Mejora del aislamiento pasivo",
         l3: "Placas fotovoltaicas",
-        l4: "Movilidad sostenible (bicicletas, cargadores el√©ctricos)"
+        l4: "Movilidad sostenible (bicicletas, cargadores elÈctricos)"
       },
       kpiTitle: "Datos clave",
       k1: { title: "Plantas", p1: "PB", p2: "P1", p3: "Terraza" },
-      k2: "Superficie total: 2.082 m¬≤",
-      k3: "SBA oficinas: 1.482 m¬≤",
+      k2: "Superficie total: 2.082 m≤",
+      k3: "SBA oficinas: 1.482 m≤",
       k4: { title: "Parking", p1: "13 exteriores", p2: "38 interiores" }
     },
     news: {
       h2: "Noticias actualidad",
       sourceLabel: "Fuente:",
-      n1: "IMEC recibe autorizaci√≥n para construir en M√°laga TechPark (17/01/2025)",
+      n1: "IMEC recibe autorizaciÛn para construir en M·laga TechPark (17/01/2025)",
       s1: "Ministerio de Ciencia",
-      n2: "Acuerdo para el centro de innovaci√≥n de chips de IMEC en M√°laga TechPark (16/07/2024)",
+      n2: "Acuerdo para el centro de innovaciÛn de chips de IMEC en M·laga TechPark (16/07/2024)",
       s2: "Ministerio de Ciencia",
-      n3: "Kadans transformar√° el edificio NODE II en M√°laga TechPark (05/02/2024)",
+      n3: "Kadans transformar· el edificio NODE II en M·laga TechPark (05/02/2024)",
       s3: "Kadans Science Partner",
-      n4: "M√°laga TechPark: impacto econ√≥mico del 2,3% del PIB andaluz (25/11/2025)",
-      s4: "Junta de Andaluc√≠a",
-      n5: "Gobierno, Junta e IMEC firman un MoU para una nueva l√≠nea de chips (13/03/2024)",
+      n4: "M·laga TechPark: impacto econÛmico del 2,3% del PIB andaluz (25/11/2025)",
+      s4: "Junta de AndalucÌa",
+      n5: "Gobierno, Junta e IMEC firman un MoU para una nueva lÌnea de chips (13/03/2024)",
       s5: "imec",
-      n6: "Kadans confirma una inversi√≥n de 30 millones en M√°laga TechPark (05/12/2024)",
+      n6: "Kadans confirma una inversiÛn de 30 millones en M·laga TechPark (05/12/2024)",
       s6: "Cadena SER"
     },
     ecosystemLogos: {
       h2: "Empresas del ecosistema",
-      sub: "Algunas compa√±√≠as con presencia en M√°laga TechPark"
+      sub: "Algunas compaÒÌas con presencia en M·laga TechPark"
     },
     testi: {
-      quote: "‚ÄúUn edificio que combina imagen corporativa, bienestar y flexibilidad real para equipos en crecimiento.‚Äù",
-      author: "Director de Real Estate - Marlow Hisp√°nica SL"
+      quote: "ìUn edificio que combina imagen corporativa, bienestar y flexibilidad real para equipos en crecimiento.î",
+      author: "Director de Real Estate - Marlow Hisp·nica SL"
     },
     plans: {
       h2: "Solicitar planos a medida",
-      sub: "Cu√©ntanos tu necesidad y te prepararemos una propuesta de planos adaptada",
+      sub: "CuÈntanos tu necesidad y te prepararemos una propuesta de planos adaptada",
       name: "Nombre y apellidos",
       company: "Empresa",
       role: "Cargo en la empresa",
-      employees: "N√∫mero estimado de trabajadores",
+      employees: "N˙mero estimado de trabajadores",
       email: "Email corporativo",
-      phone: "Tel√©fono",
-      area: "m¬≤ aproximados",
+      phone: "TelÈfono",
+      area: "m≤ aproximados",
       date: "Fecha objetivo de entrada",
-      typology: "Tipolog√≠a de oficinas",
+      typology: "TipologÌa de oficinas",
       typologyOpt0: "Selecciona",
       typologyOpt1: "Pradera",
       typologyOpt2: "Colaborativo",
@@ -205,81 +205,81 @@ const i18n = {
     },
     schedule: {
       h2: "Agendar visita",
-      sub: "D√©janos tu disponibilidad y organizaremos la visita",
+      sub: "DÈjanos tu disponibilidad y organizaremos la visita",
       name: "Nombre y apellidos",
       company: "Empresa",
       email: "Email corporativo",
-      phone: "Tel√©fono",
+      phone: "TelÈfono",
       date: "Fecha preferida",
       time: "Franja horaria",
       timeOpt0: "Selecciona",
-      timeOpt1: "Ma√±ana (9:00-12:00)",
-      timeOpt2: "Mediod√≠a (12:00-15:00)",
+      timeOpt1: "MaÒana (9:00-12:00)",
+      timeOpt2: "MediodÌa (12:00-15:00)",
       timeOpt3: "Tarde (15:00-18:00)",
       notes: "Notas",
       submit: "Solicitar visita"
     },
     cta: {
-      h2: "Solicita informaci√≥n",
+      h2: "Solicita informaciÛn",
       p1: "Te enviamos el dossier completo y toda la informacion del inmueble",
-      btn1: "Solicitar informaci√≥n",
+      btn1: "Solicitar informaciÛn",
       btn2: "Agendar visita"
     },
     form: {
       name: "Nombre y apellidos",
       company: "Empresa",
       email: "Email corporativo",
-      phone: "Tel√©fono",
-      area: "m¬≤ aproximados",
+      phone: "TelÈfono",
+      area: "m≤ aproximados",
       date: "Fecha objetivo de entrada",
       message: "Mensaje",
-      rgpd: "Acepto la pol√≠tica de privacidad (RGPD)",
-      rgpdLink: "Ver pol√≠tica",
+      rgpd: "Acepto la polÌtica de privacidad (RGPD)",
+      rgpdLink: "Ver polÌtica",
       submit: "Enviar solicitud",
       dossier: "Descargar dossier"
     },
     footer: { rights: "Todos los derechos reservados" },
     gallery: {
-      h2: "Galer√≠a",
+      h2: "GalerÌa",
       sub: "Recorre los espacios interiores y exteriores del edificio",
       exteriorTitle: "Exterior",
       terraceTitle: "Terraza",
       interiorTitle: "Interior",
-      alt1: "Terraza exterior con mobiliario y p√©rgola, vista panor√°mica",
+      alt1: "Terraza exterior con mobiliario y pÈrgola, vista panor·mica",
       alt2: "Exterior del edificio con acceso y zonas ajardinadas",
-      alt3: "Terraza cubierta con suelo de hormig√≥n y celos√≠a",
+      alt3: "Terraza cubierta con suelo de hormigÛn y celosÌa",
       alt4: "Terraza cubierta con cerramientos de vidrio y vistas",
       alt5: "Interior con tabiques acristalados y techo de lamas",
-      alt6: "Interior con cerramiento de vidrio y zona di√°fana",
+      alt6: "Interior con cerramiento de vidrio y zona di·fana",
       alt7: "Interior con techo naranja y ventanales hacia terraza",
-      alt8: "Planta di√°fana con columnas y m¬≤ltiples ventanas",
-      alt9: "Detalle de celos√≠a con vegetaci√≥n exterior",
-      alt10: "Zona di√°fana con columnas y vidrio al fondo",
-      alt11: "Azotea/terraza exterior con vistas a la monta√±a",
+      alt8: "Planta di·fana con columnas y m≤ltiples ventanas",
+      alt9: "Detalle de celosÌa con vegetaciÛn exterior",
+      alt10: "Zona di·fana con columnas y vidrio al fondo",
+      alt11: "Azotea/terraza exterior con vistas a la montaÒa",
       alt12: "Interior con columnas y luz natural",
       alt13: "Interior con persona caminando junto a ventanales",
-      alt14: "Fachada exterior del edificio y Jard√≠n",
+      alt14: "Fachada exterior del edificio y JardÌn",
       alt15: "Detalle interior de ventanas y columna",
-      alt16: "Vista interior hacia celos√≠a y vegetaci√≥n"
+      alt16: "Vista interior hacia celosÌa y vegetaciÛn"
     },
     errors: {
       required: "Campo obligatorio",
-      email: "Introduce un email corporativo v√°lido",
-      rgpd: "Debes aceptar la pol√≠tica de privacidad",
-      turnstile: "Completa la verificaci√≥n anti-spam"
+      email: "Introduce un email corporativo v·lido",
+      rgpd: "Debes aceptar la polÌtica de privacidad",
+      turnstile: "Completa la verificaciÛn anti-spam"
     },
     status: {
-      loading: "Enviando‚Ä¶",
+      loading: "EnviandoÖ",
       success: "Solicitud enviada. Te contactaremos en breve",
       thanks: "Gracias, hemos recibido tu solicitud.",
-      error: "No se pudo enviar. Int√©ntalo de nuevo",
+      error: "No se pudo enviar. IntÈntalo de nuevo",
       offline: "No se pudo enviar. Guardamos tu solicitud localmente"
     },
     alts: {
       hero: "Fachada exterior del edificio con jardines",
-      terrace: "Terraza cubierta con suelo de hormig√≥n y celos√≠a",
+      terrace: "Terraza cubierta con suelo de hormigÛn y celosÌa",
       exterior: "Render exterior del edificio",
-      interior: "Planta di√°fana con columnas y m¬≤ltiples ventanas",
+      interior: "Planta di·fana con columnas y m≤ltiples ventanas",
       map: "Azotea con vistas del entorno",
       logo: "Logotipo MC8",
       planPb: "Plano de planta baja",
@@ -289,10 +289,10 @@ const i18n = {
   },
   en: {
     meta: {
-      title: "MC8 ¬∑ M√°laga TechPark ‚Äî Corporate Headquarters",
-      description: "Premium office building for lease in M√°laga TechPark. Total flexibility, sustainability, outdoor spaces, and wellbeing. Request information",
-      ogTitle: "MC8 ¬∑ M√°laga TechPark ‚Äî Corporate Headquarters",
-      ogDescription: "Premium corporate building in M√°laga TechPark. Flexibility, wellbeing, and sustainability. Request information"
+      title: "MC8 ∑ M·laga TechPark ó Corporate Headquarters",
+      description: "Premium office building for lease in M·laga TechPark. Total flexibility, sustainability, outdoor spaces, and wellbeing. Request information",
+      ogTitle: "MC8 ∑ M·laga TechPark ó Corporate Headquarters",
+      ogDescription: "Premium corporate building in M·laga TechPark. Flexibility, wellbeing, and sustainability. Request information"
     },
     hero: {
       eyebrow: "A building without limits",
@@ -302,10 +302,10 @@ const i18n = {
       cta1: "Request information",
       cta2: "Schedule a tour",
       cta3: "Custom plans",
-      address: "Calle Marie Curie 8, M√°laga",
-      trust1: { value: "2,082 m¬≤", label: "total area" },
-      trust2: { value: "1,482 m¬≤", label: "GFA" },
-      trust3: { value: "600 m¬≤", label: "terrace" },
+      address: "Calle Marie Curie 8, M·laga",
+      trust1: { value: "2,082 m≤", label: "total area" },
+      trust2: { value: "1,482 m≤", label: "GFA" },
+      trust3: { value: "600 m≤", label: "terrace" },
       trust4: { value: "Dec 2025", label: "availability" }
     },
     header: { cta: "Request information" },
@@ -316,7 +316,7 @@ const i18n = {
       li1: "Deep, flexible, highly efficient floors",
       li2: "Collaborative areas and focus zones",
       li3: "Premium, representative corporate image",
-      stat1: { value: "600 m¬≤", label: "covered terrace" },
+      stat1: { value: "600 m≤", label: "covered terrace" },
       stat2: { value: "6", label: "EV chargers" },
       stat3: { value: "51", label: "parking spaces" }
     },
@@ -325,14 +325,14 @@ const i18n = {
       sub: "The project includes high-value outdoor areas that extend the office beyond traditional limits. Gardens and terraces become places to work, meet and recharge",
       card1: {
         title: "Main terrace",
-        l1: "600‚Äì700 m¬≤ rooftop terrace",
-        l2: "Open views of the M√°laga mountains",
+        l1: "600ñ700 m≤ rooftop terrace",
+        l2: "Open views of the M·laga mountains",
         l3: "Ideal for events, informal meetings or outdoor work"
       },
       card2: {
         title: "Gardens and outdoor areas",
         l1: "Landscaped areas on the first floor",
-        l2: "Direct indoor‚Äìoutdoor relationship",
+        l2: "Direct indoorñoutdoor relationship",
         l3: "Natural light and ventilation as core design elements"
       },
       card3: {
@@ -370,12 +370,12 @@ const i18n = {
       li3: "Wellbeing as a competitive advantage"
     },
     mtp: {
-      h2: "M√°laga TechPark",
+      h2: "M·laga TechPark",
       p1: "A leading business ecosystem in southern Europe with strong international presence and tech talent",
       m1: { value: "+680", label: "companies" },
       m2: { value: "+70", label: "international companies" },
       m3: { value: "+25,100", label: "employees" },
-      m4: { value: "+‚Ç¨3.4B", label: "annual turnover" }
+      m4: { value: "+Ä3.4B", label: "annual turnover" }
     },
     services: {
       h2: "Building services",
@@ -384,12 +384,12 @@ const i18n = {
       s3: "Bikes + showers + locker rooms",
       s4: "Universal accessibility",
       s5: "Security / access control",
-      s6: "Reception / caf√© option"
+      s6: "Reception / cafÈ option"
     },
     tabs: {
       specs: "Building",
       garden: "Garden & terraces",
-      ecosystem: "M√°laga TechPark ecosystem",
+      ecosystem: "M·laga TechPark ecosystem",
       flex: "Flexibility"
     },
     building: {
@@ -417,33 +417,33 @@ const i18n = {
       },
       kpiTitle: "Key facts",
       k1: { title: "Floors", p1: "GF", p2: "L1", p3: "Terrace" },
-      k2: "Total area: 2,082 m¬≤",
-      k3: "Office GFA: 1,482 m¬≤",
+      k2: "Total area: 2,082 m≤",
+      k3: "Office GFA: 1,482 m≤",
       k4: { title: "Parking", p1: "13 outdoor", p2: "38 indoor" }
     },
     news: {
       h2: "News update",
       sourceLabel: "Source:",
-      n1: "IMEC receives authorization to build at M√°laga TechPark (Jan 17, 2025)",
+      n1: "IMEC receives authorization to build at M·laga TechPark (Jan 17, 2025)",
       s1: "Spanish Ministry of Science",
-      n2: "Agreement for IMEC's chip innovation center in M√°laga TechPark (Jul 16, 2024)",
+      n2: "Agreement for IMEC's chip innovation center in M·laga TechPark (Jul 16, 2024)",
       s2: "Spanish Ministry of Science",
-      n3: "Kadans will transform the NODE II building in M√°laga TechPark (Feb 5, 2024)",
+      n3: "Kadans will transform the NODE II building in M·laga TechPark (Feb 5, 2024)",
       s3: "Kadans Science Partner",
-      n4: "M√°laga TechPark: economic impact equals 2.3% of Andalusia's GDP (Nov 25, 2025)",
+      n4: "M·laga TechPark: economic impact equals 2.3% of Andalusia's GDP (Nov 25, 2025)",
       s4: "Regional Government of Andalusia",
       n5: "Government, Andalusia and imec sign MoU for a new chip pilot line (Mar 13, 2024)",
       s5: "imec",
-      n6: "Kadans confirms a ‚Ç¨30M investment in M√°laga TechPark (Dec 5, 2024)",
+      n6: "Kadans confirms a Ä30M investment in M·laga TechPark (Dec 5, 2024)",
       s6: "Cadena SER"
     },
     ecosystemLogos: {
       h2: "Ecosystem companies",
-      sub: "A selection of companies present in M√°laga TechPark"
+      sub: "A selection of companies present in M·laga TechPark"
     },
     testi: {
-      quote: "‚ÄúA building that combines corporate image, wellbeing, and real flexibility for growing teams.‚Äù",
-      author: "Real Estate Director - Marlow Hisp√°nica SL"
+      quote: "ìA building that combines corporate image, wellbeing, and real flexibility for growing teams.î",
+      author: "Real Estate Director - Marlow Hisp·nica SL"
     },
     plans: {
       h2: "Request custom plans",
@@ -454,7 +454,7 @@ const i18n = {
       employees: "Estimated number of employees",
       email: "Corporate email",
       phone: "Phone",
-      area: "Approx. m¬≤",
+      area: "Approx. m≤",
       date: "Target move-in date",
       typology: "Office typology",
       typologyOpt0: "Select",
@@ -492,7 +492,7 @@ const i18n = {
       company: "Company",
       email: "Corporate email",
       phone: "Phone",
-      area: "Approx. m¬≤",
+      area: "Approx. m≤",
       date: "Target move-in date",
       message: "Message",
       rgpd: "I accept the privacy policy (GDPR)",
@@ -531,7 +531,7 @@ const i18n = {
       turnstile: "Please complete the anti-spam verification"
     },
     status: {
-      loading: "Sending‚Ä¶",
+      loading: "SendingÖ",
       success: "Request sent. We will contact you shortly",
       thanks: "Thanks, we've received your request.",
       error: "Could not send. Please try again",
@@ -555,7 +555,7 @@ const galleryImages = [
   { id: "img-gallery-exterior-1", src: "assets/OLD-render-exterior.jpg", altKey: "alt14" },
   { id: "img-gallery-exterior-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
   { id: "img-gallery-exterior-4", src: "assets/exterior-building-garden-wide.jpg", altKey: "alt4" },
-  { id: "img-gallery-interior-1", src: "assets/OLD- render interior.jpg", altKey: "alt8" },
+  { id: "img-gallery-interior-1", src: "assets/OLD-render-interior.jpg", altKey: "alt8" },
   { id: "img-gallery-interior-2", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt10" },
   { id: "img-gallery-interior-3", src: "assets/interior-glass-partition-wood-ceiling.jpg", altKey: "alt12" },
   { id: "img-gallery-interior-4", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
