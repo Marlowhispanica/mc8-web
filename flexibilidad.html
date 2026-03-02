@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flexibilidad · MC8 Málaga TechPark</title>
-  <meta name="description" content="Flexibilidad de alquiler y entrega en MC8" />
+  <link rel="icon" href="/favicon.ico?v=1">
+  <title>Flexibilidad de espacios | MC8 Málaga TechPark</title>
+  <meta name="description" content="Soluciones flexibles de implantación y distribución de oficinas en MC8, Marie Curie 8, Málaga TechPark. ES/EN." />
+  <link rel="canonical" href="https://mc8malaga.com/flexibilidad.html" />
+  <link rel="alternate" hreflang="es" href="https://mc8malaga.com/flexibilidad.html#es" />
+  <link rel="alternate" hreflang="en" href="https://mc8malaga.com/flexibilidad.html#en" />
+  <link rel="alternate" hreflang="x-default" href="https://mc8malaga.com/flexibilidad.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mc8malaga.com/flexibilidad.html" />
+  <meta property="og:title" content="Flexibilidad de espacios | MC8 Málaga TechPark" />
+  <meta property="og:description" content="Soluciones flexibles de implantación y distribución de oficinas en MC8, Marie Curie 8, Málaga TechPark. ES/EN." />
+  <meta property="og:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flexibilidad de espacios | MC8 Málaga TechPark" />
+  <meta name="twitter:description" content="Soluciones flexibles de implantación y distribución de oficinas en MC8, Marie Curie 8, Málaga TechPark. ES/EN." />
+  <meta name="twitter:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page-internal">
@@ -41,8 +55,10 @@
   <main id="main">
     <section class="section">
       <div class="container">
-        <h1 class="page-title justify-only" data-i18n="flex.h2">Espacios que se adaptan a tu forma de trabajar</h1>
-        <p class="section-lead justify-only" data-i18n="flex.p1">MC8 se entrega como espacio diáfano, permitiendo a cada empresa diseñar su oficina a medida. El edificio ha sido concebido para evolucionar con el inquilino y adaptarse a los cambios del negocio</p>
+        <div class="building-intro">
+          <h1 class="page-title" data-i18n="flex.h2">Espacios que se adaptan a tu forma de trabajar</h1>
+          <p class="section-lead" data-i18n="flex.p1">MC8 se entrega como espacio diáfano, permitiendo a cada empresa diseñar su oficina a medida. El edificio ha sido concebido para evolucionar con el inquilino y adaptarse a los cambios del negocio</p>
+        </div>
         <div class="media-grid plans-grid">
           <div class="media-card">
             <div class="img-frame">
@@ -128,12 +144,13 @@
     </label>
     <label class="field">
       <span data-i18n="plans.email">Email corporativo</span>
-      <input name="plans_email" type="email" required />
+      <input name="plans_email" type="email" required title="Introduce un email corporativo válido" />
       <span class="error" data-error-for="plans_email"></span>
     </label>
     <label class="field">
       <span data-i18n="plans.phone">Teléfono</span>
-      <input name="plans_phone" type="tel" />
+      <input name="plans_phone" type="tel" required pattern="[+0-9()\s-]{7,}" title="Introduce un teléfono válido (mínimo 7 caracteres)" autocomplete="tel" />
+      <span class="error" data-error-for="plans_phone"></span>
     </label>
     <label class="field">
       <span data-i18n="plans.area">m² aproximados</span>
@@ -161,7 +178,7 @@
     <label class="field full checkbox">
       <input name="plans_rgpd" type="checkbox" required />
       <span data-i18n="form.rgpd">Acepto la política de privacidad (RGPD)</span>
-      <a href="politica-privacidad.html" target="_blank" rel="noopener" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
+      <a href="/politica-privacidad.html" target="_blank" rel="noopener" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
       <span class="error" data-error-for="plans_rgpd"></span>
     </label>
   </div>
@@ -192,12 +209,9 @@
     </div>
   </footer>
 
-  <script src="main.js?v=20260219b"></script>
+  <script src="main.js?v=20260302a"></script>
 </body>
 </html>
-
-
-
 
 
 

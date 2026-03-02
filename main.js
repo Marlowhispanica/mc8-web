@@ -265,6 +265,7 @@ const i18n = {
     errors: {
       required: "Campo obligatorio",
       email: "Introduce un email corporativo válido",
+      phone: "Introduce un teléfono válido",
       rgpd: "Debes aceptar la política de privacidad",
       turnstile: "Completa la verificación anti-spam"
     },
@@ -527,6 +528,7 @@ const i18n = {
     errors: {
       required: "This field is required",
       email: "Please enter a valid corporate email",
+      phone: "Please enter a valid phone number",
       rgpd: "You must accept the privacy policy",
       turnstile: "Please complete the anti-spam verification"
     },
@@ -794,6 +796,10 @@ function validateEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function validatePhone(value) {
+  return /^[+\d\s()\-]{7,}$/.test(value);
+}
+
 function isCorporateEmail(value) {
   const freeDomains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com", "proton.me", "protonmail.com"];
   const domain = value.split("@")[1] || "";
@@ -893,7 +899,7 @@ function setupForm() {
   }
 
   function clearErrors() {
-    ["name", "company", "email", "rgpd"].forEach(name => setError(name, ""));
+    ["name", "company", "email", "phone", "rgpd"].forEach(name => setError(name, ""));
   }
 
     function validate() {
@@ -903,6 +909,7 @@ function setupForm() {
     const name = form.name.value.trim();
     const company = form.company.value.trim();
     const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
     const rgpd = form.rgpd.checked;
 
     if (!name) {
@@ -915,6 +922,10 @@ function setupForm() {
     }
     if (!email || !validateEmail(email) || !isCorporateEmail(email)) {
       setError("email", i18n[currentLang].errors.email);
+      ok = false;
+    }
+    if (!phone || !validatePhone(phone)) {
+      setError("phone", i18n[currentLang].errors.phone);
       ok = false;
     }
     if (!rgpd) {
@@ -1006,7 +1017,7 @@ function setupScheduleModal() {
   }
 
   function clearErrors() {
-    ["visit_name", "visit_company", "visit_email", "visit_date", "visit_time"].forEach(name => setError(name, ""));
+    ["visit_name", "visit_company", "visit_email", "visit_phone", "visit_date", "visit_time"].forEach(name => setError(name, ""));
   }
 
   function validate() {
@@ -1015,12 +1026,14 @@ function setupScheduleModal() {
     const name = form.visit_name.value.trim();
     const company = form.visit_company.value.trim();
     const email = form.visit_email.value.trim();
+    const phone = form.visit_phone.value.trim();
     const date = form.visit_date.value.trim();
     const time = form.visit_time.value.trim();
 
     if (!name) { setError("visit_name", i18n[currentLang].errors.required); ok = false; }
     if (!company) { setError("visit_company", i18n[currentLang].errors.required); ok = false; }
     if (!email || !validateEmail(email) || !isCorporateEmail(email)) { setError("visit_email", i18n[currentLang].errors.email); ok = false; }
+    if (!phone || !validatePhone(phone)) { setError("visit_phone", i18n[currentLang].errors.phone); ok = false; }
     if (!date) { setError("visit_date", i18n[currentLang].errors.required); ok = false; }
     if (!time) { setError("visit_time", i18n[currentLang].errors.required); ok = false; }
 
@@ -1046,7 +1059,17 @@ let leadModalInitialized = false;
 function setupLeadModal() {
   if (leadModalInitialized) return;
   const modal = document.getElementById("lead-modal");
-  if (!modal) return;
+  if (!modal) {
+    document.querySelectorAll("[data-open='lead']").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const lang = getLangFromHash();
+        window.location.href = `index.html?open=lead#${lang}`;
+      });
+    });
+    leadModalInitialized = true;
+    return;
+  }
 
   function openModal() {
     modal.classList.add("is-open");
@@ -1067,10 +1090,67 @@ function setupLeadModal() {
     });
 
     const successKey = getSuccessKey();
-    if (successKey === "lead") openModal();
+    let openParam = null;
+    try {
+      const params = new URLSearchParams(window.location.search);
+      openParam = params.get("open");
+    } catch (e) {}
+    if (successKey === "lead" || openParam === "lead") openModal();
 
     leadModalInitialized = true;
   }
+
+function hasVisiblePrimaryLeadCta() {
+  const candidates = document.querySelectorAll("a, button, [data-cta='lead'], [data-open='lead'], .btn-primary, .cta");
+  const viewportLimit = 420;
+  const re = /solicitar\s+informaci[oó]n|request\s+information/i;
+  for (const el of candidates) {
+    const text = (el.textContent || "").trim();
+    if (!re.test(text)) continue;
+    if (el.closest(".modal") || el.closest(".sticky-cta")) continue;
+    const style = window.getComputedStyle(el);
+    if (style.display === "none" || style.visibility === "hidden" || style.opacity === "0") continue;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) continue;
+    if (rect.bottom <= 0 || rect.top >= window.innerHeight) continue;
+    if (rect.top <= viewportLimit) return true;
+  }
+  return false;
+}
+
+function setupStickyLeadCta() {
+  const page = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
+  if (page === "galeria.html") return;
+  if (page === "index.html" && hasVisiblePrimaryLeadCta()) return;
+
+  let sticky = document.querySelector(".sticky-cta");
+  if (!sticky) {
+    sticky = document.createElement("button");
+    sticky.type = "button";
+    sticky.className = "sticky-cta";
+    sticky.setAttribute("aria-label", "Solicitar información");
+    sticky.textContent = "Solicitar información";
+    document.body.appendChild(sticky);
+  }
+
+  const toggleVisibility = () => {
+    sticky.classList.toggle("is-visible", window.scrollY > 400);
+  };
+
+  sticky.addEventListener("click", () => {
+    const leadModal = document.getElementById("lead-modal");
+    const openLeadBtn = document.querySelector("[data-open='lead']");
+    if (leadModal && openLeadBtn) {
+      openLeadBtn.click();
+      return;
+    }
+    const lang = getLangFromHash();
+    window.location.href = `index.html?open=lead#${lang}`;
+  });
+
+  window.addEventListener("scroll", toggleVisibility, { passive: true });
+  toggleVisibility();
+}
 
 let plansModalInitialized = false;
 function setupPlansModal() {
@@ -1105,7 +1185,7 @@ function setupPlansModal() {
   }
 
   function clearErrors() {
-    ["plans_name", "plans_company", "plans_role", "plans_employees", "plans_email", "plans_typology", "plans_rgpd"].forEach(name => setError(name, ""));
+    ["plans_name", "plans_company", "plans_role", "plans_employees", "plans_email", "plans_phone", "plans_typology", "plans_rgpd"].forEach(name => setError(name, ""));
   }
 
     function validate() {
@@ -1114,6 +1194,7 @@ function setupPlansModal() {
     const name = form.plans_name.value.trim();
     const company = form.plans_company.value.trim();
     const email = form.plans_email.value.trim();
+    const phone = form.plans_phone.value.trim();
     const role = form.plans_role.value.trim();
     const employees = form.plans_employees.value.trim();
     const typology = form.plans_typology.value.trim();
@@ -1124,6 +1205,7 @@ function setupPlansModal() {
     if (!role) { setError("plans_role", i18n[currentLang].errors.required); ok = false; }
     if (!employees) { setError("plans_employees", i18n[currentLang].errors.required); ok = false; }
     if (!email || !validateEmail(email) || !isCorporateEmail(email)) { setError("plans_email", i18n[currentLang].errors.email); ok = false; }
+    if (!phone || !validatePhone(phone)) { setError("plans_phone", i18n[currentLang].errors.phone); ok = false; }
     if (!typology) { setError("plans_typology", i18n[currentLang].errors.required); ok = false; }
     if (!rgpd) { setError("plans_rgpd", i18n[currentLang].errors.rgpd); ok = false; }
 
@@ -1229,6 +1311,7 @@ function init() {
   setupPlansModal();
   setupTabs();
   setupLightbox();
+  setupStickyLeadCta();
   updateNavLinks(lang);
 
   const navSelect = document.getElementById("nav-index");

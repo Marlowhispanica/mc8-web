@@ -3,8 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Galería · MC8 Málaga TechPark</title>
-  <meta name="description" content="Galería de imágenes del edificio MC8" />
+  <link rel="icon" href="/favicon.ico?v=1">
+  <title>Galería de oficinas | MC8 Málaga TechPark</title>
+  <meta name="description" content="Galería de espacios interiores, exteriores y terrazas de MC8 en Marie Curie 8, Málaga TechPark. Disponible en ES/EN." />
+  <link rel="canonical" href="https://mc8malaga.com/galeria.html" />
+  <link rel="alternate" hreflang="es" href="https://mc8malaga.com/galeria.html#es" />
+  <link rel="alternate" hreflang="en" href="https://mc8malaga.com/galeria.html#en" />
+  <link rel="alternate" hreflang="x-default" href="https://mc8malaga.com/galeria.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mc8malaga.com/galeria.html" />
+  <meta property="og:title" content="Galería de oficinas | MC8 Málaga TechPark" />
+  <meta property="og:description" content="Galería de espacios interiores, exteriores y terrazas de MC8 en Marie Curie 8, Málaga TechPark. Disponible en ES/EN." />
+  <meta property="og:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Galería de oficinas | MC8 Málaga TechPark" />
+  <meta name="twitter:description" content="Galería de espacios interiores, exteriores y terrazas de MC8 en Marie Curie 8, Málaga TechPark. Disponible en ES/EN." />
+  <meta name="twitter:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="page-internal">
@@ -41,8 +55,10 @@
   <main id="main">
     <section class="section">
       <div class="container">
-        <h1 class="page-title" data-i18n="gallery.h2">Galería</h1>
-        <p class="section-lead" data-i18n="gallery.sub">Recorre los espacios interiores y exteriores del edificio</p>
+        <div class="building-intro">
+          <h1 class="page-title" data-i18n="gallery.h2">Galería</h1>
+          <p class="section-lead" data-i18n="gallery.sub">Recorre los espacios interiores y exteriores del edificio</p>
+        </div>
         <div class="gallery-block">
           <h2 class="gallery-block-title" data-i18n="gallery.exteriorTitle">Exterior</h2>
           <div class="carousel">
@@ -113,12 +129,13 @@
           </label>
           <label class="field">
             <span data-i18n="schedule.email">Email corporativo</span>
-            <input name="visit_email" type="email" required />
+            <input name="visit_email" type="email" required title="Introduce un email corporativo válido" />
             <span class="error" data-error-for="visit_email"></span>
           </label>
           <label class="field">
             <span data-i18n="schedule.phone">Teléfono</span>
-            <input name="visit_phone" type="tel" />
+            <input name="visit_phone" type="tel" required pattern="[+0-9()\s-]{7,}" title="Introduce un teléfono válido (mínimo 7 caracteres)" autocomplete="tel" />
+            <span class="error" data-error-for="visit_phone"></span>
           </label>
           <label class="field">
             <span data-i18n="schedule.date">Fecha preferida</span>
@@ -184,12 +201,13 @@
           </label>
           <label class="field">
             <span data-i18n="form.email">Email corporativo</span>
-            <input name="email" type="email" required />
+            <input name="email" type="email" required title="Introduce un email corporativo válido" />
             <span class="error" data-error-for="email"></span>
           </label>
           <label class="field">
             <span data-i18n="form.phone">Teléfono</span>
-            <input name="phone" type="tel" />
+            <input name="phone" type="tel" required pattern="[+0-9()\s-]{7,}" title="Introduce un teléfono válido (mínimo 7 caracteres)" autocomplete="tel" />
+            <span class="error" data-error-for="phone"></span>
           </label>
           <label class="field">
             <span data-i18n="form.area">m² aproximados</span>
@@ -206,7 +224,7 @@
           <label class="field full checkbox">
             <input name="rgpd" type="checkbox" required />
             <span data-i18n="form.rgpd">Acepto la política de privacidad (RGPD)</span>
-            <a href="politica-privacidad.html" target="_blank" rel="noopener" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
+            <a href="/politica-privacidad.html" target="_blank" rel="noopener" class="inline-link" data-i18n="form.rgpdLink">Ver política</a>
             <span class="error" data-error-for="rgpd"></span>
           </label>
         </div>
@@ -238,13 +256,9 @@
     </div>
   </footer>
 
-  <script src="main.js?v=20260219b"></script>
+  <script src="main.js?v=20260302a"></script>
 </body>
 </html>
-
-
-
-
 
 
 

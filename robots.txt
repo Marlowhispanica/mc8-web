@@ -1,0 +1,10 @@
+﻿User-agent: *
+Allow: /
+Disallow: /foro-marca
+Disallow: /cuentas-winamax
+Disallow: /promociones-en-marcas
+Disallow: /caliente-espa%C3%B1a-vs-italia
+Disallow: /sisal-en-espa%C3%B1a
+Disallow: /deportes-betfred
+
+Sitemap: https://mc8malaga.com/sitemap.xml
