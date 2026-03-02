@@ -33,7 +33,7 @@ const i18n = {
       ogDescription: "Edificio corporativo premium en Málaga TechPark. Flexibilidad, bienestar y sostenibilidad. Solicita información"
     },
     hero: {
-      eyebrow: "OFICINA corporativa premium",
+      eyebrow: "Un edificio sin límites",
       h1: "Una nueva forma de entender la oficina",
       subline: "Un edificio singular, flexible y preparado para evolucionar con tu empresa",
       sub: "",
@@ -242,6 +242,9 @@ const i18n = {
     gallery: {
       h2: "Galería",
       sub: "Recorre los espacios interiores y exteriores del edificio",
+      exteriorTitle: "Exterior",
+      terraceTitle: "Terraza",
+      interiorTitle: "Interior",
       alt1: "Terraza exterior con mobiliario y pérgola, vista panorámica",
       alt2: "Exterior del edificio con acceso y zonas ajardinadas",
       alt3: "Terraza cubierta con suelo de hormigón y celosía",
@@ -292,7 +295,7 @@ const i18n = {
       ogDescription: "Premium corporate building in Málaga TechPark. Flexibility, wellbeing, and sustainability. Request information"
     },
     hero: {
-      eyebrow: "Premium corporate headquarters",
+      eyebrow: "A building without limits",
       h1: "THE NEW WAY TO WORK",
       subline: "A singular, flexible building designed to evolve with your company",
       sub: "",
@@ -501,6 +504,9 @@ const i18n = {
     gallery: {
       h2: "Gallery",
       sub: "Explore interior and exterior spaces of the building",
+      exteriorTitle: "Exterior",
+      terraceTitle: "Terrace",
+      interiorTitle: "Interior",
       alt1: "Outdoor terrace with furniture and pergola, panoramic view",
       alt2: "Building exterior with access and landscaped areas",
       alt3: "Covered terrace with polished concrete floor and lattice",
@@ -546,20 +552,19 @@ const i18n = {
 };
 
 const galleryImages = [
-  { id: "img-gallery-1", src: "assets/exterior-building-corner-sky.jpg", altKey: "alt14" },
-  { id: "img-gallery-2", src: "assets/exterior-courtyard-orange-building.jpg", altKey: "alt11" },
-  { id: "img-gallery-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
-  { id: "img-gallery-4", src: "assets/exterior-building-garden-wide.jpg", altKey: "alt4" },
-  { id: "img-gallery-5", src: "assets/rooftop-terrace-wide.jpg", altKey: "alt8" },
-  { id: "img-gallery-6", src: "assets/rooftop-terrace-city-view.jpg", altKey: "alt5" },
-  { id: "img-gallery-7", src: "assets/rooftop-orange-building-railings.jpg", altKey: "alt6" },
-  { id: "img-gallery-8", src: "assets/interior-open-space-columns-wide.jpg", altKey: "alt7" },
-  { id: "img-gallery-9", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt10" },
-  { id: "img-gallery-10", src: "assets/interior-glass-partition-wood-ceiling.jpg", altKey: "alt12" },
-  { id: "img-gallery-11", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
-  { id: "img-gallery-12", src: "assets/interior-staircase-skylight-wood-ceiling.jpg", altKey: "alt15" },
-  { id: "img-gallery-13", src: "assets/interior-bathroom-double-sink-mirrors.jpg", altKey: "alt16" },
-  { id: "img-gallery-14", src: "assets/interior-bathroom-toilets.jpg", altKey: "alt9" }
+  { id: "img-gallery-exterior-1", src: "assets/OLD-render-exterior.jpg", altKey: "alt14" },
+  { id: "img-gallery-exterior-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
+  { id: "img-gallery-exterior-4", src: "assets/exterior-building-garden-wide.jpg", altKey: "alt4" },
+  { id: "img-gallery-interior-1", src: "assets/OLD- render interior.jpg", altKey: "alt8" },
+  { id: "img-gallery-interior-2", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt10" },
+  { id: "img-gallery-interior-3", src: "assets/interior-glass-partition-wood-ceiling.jpg", altKey: "alt12" },
+  { id: "img-gallery-interior-4", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
+  { id: "img-gallery-interior-5", src: "assets/interior-staircase-skylight-wood-ceiling.jpg", altKey: "alt15" },
+  { id: "img-gallery-interior-6", src: "assets/interior-bathroom-double-sink-mirrors.jpg", altKey: "alt16" },
+  { id: "img-gallery-interior-7", src: "assets/interior-bathroom-toilets.jpg", altKey: "alt9" },
+  { id: "img-gallery-terrace-1", src: "assets/OLD-render-terrace.jpg", altKey: "alt1" },
+  { id: "img-gallery-terrace-2", src: "assets/rooftop-terrace-city-view.jpg", altKey: "alt11" },
+  { id: "img-gallery-terrace-3", src: "assets/rooftop-orange-building-railings.jpg", altKey: "alt5" }
 ];
 
 let currentLang = "es";
@@ -934,9 +939,9 @@ function setupForm() {
 let carouselInitialized = false;
 function setupCarousel() {
   if (carouselInitialized) return;
-  const track = document.getElementById("gallery-track");
-  if (!track) return;
-  enableDragScroll(track);
+  const tracks = document.querySelectorAll(".gallery-track");
+  if (!tracks.length) return;
+  tracks.forEach(track => enableDragScroll(track));
   carouselInitialized = true;
 }
 
@@ -1246,17 +1251,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
-
-
-
-
-
-
-
-
-
 
 
 

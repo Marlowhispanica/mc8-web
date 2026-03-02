@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -386,13 +386,13 @@ a:focus-visible {
   text-align-last: left;
 }
 
-.building-intro h1,
+.building-intro .page-title,
 .building-intro .section-lead {
   max-width: 100%;
 }
 
-.building-intro h1 {
-  letter-spacing: 1.6px;
+.building-intro .page-title {
+  letter-spacing: 0.6px;
   margin-bottom: 18px;
 }
 
@@ -402,14 +402,45 @@ a:focus-visible {
   text-align-last: left;
 }
 
-.outdoor-intro h1,
+.outdoor-intro .page-title,
 .outdoor-intro .section-lead {
   max-width: 100%;
 }
 
+.outdoor-intro .page-title {
+  margin-bottom: 16px;
+  padding-bottom: 0.12em;
+}
+
+.outdoor-intro .page-title::after {
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
 /* Align spacing across internal pages (non-home) */
-.page-internal h1 {
-  margin-bottom: 18px;
+.page-title {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 5.1vw, 5.1rem);
+  line-height: 1.1;
+  text-align: left;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+
+.page-internal .section {
+  padding-top: 40px;
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background: var(--accent);
 }
 
 .page-internal .section-lead {
@@ -832,6 +863,17 @@ a:focus-visible {
 .carousel {
   position: relative;
   margin-top: 0;
+}
+
+.gallery-block + .gallery-block {
+  margin-top: 26px;
+}
+
+.gallery-block-title {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  letter-spacing: 0.6px;
+  margin: 14px 0 10px;
 }
 
 .carousel-track {
@@ -1359,5 +1401,3 @@ input, select, textarea {
     text-align: left;
   }
 }
-
-
