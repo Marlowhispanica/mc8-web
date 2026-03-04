@@ -1,10 +1,11 @@
 export async function verifyTurnstile(env, token, remoteip) {
-  if (!env.TURNSTILE_SECRET) {
-    throw new Error("TURNSTILE_SECRET not configured");
+  const secret = env.TURNSTILE_SECRET_KEY || env.TURNSTILE_SECRET;
+  if (!secret) {
+    throw new Error("TURNSTILE_SECRET_KEY not configured");
   }
 
   const form = new FormData();
-  form.append("secret", env.TURNSTILE_SECRET);
+  form.append("secret", secret);
   form.append("response", token);
   if (remoteip) form.append("remoteip", remoteip);
 
@@ -18,8 +19,8 @@ export async function verifyTurnstile(env, token, remoteip) {
   }
 
   const data = await res.json();
-  if (!data.success) {
-    const codes = Array.isArray(data["error-codes"]) ? data["error-codes"].join(", ") : "unknown";
-    throw new Error(`Turnstile rejected: ${codes}`);
-  }
+  return {
+    success: data.success === true,
+    codes: Array.isArray(data["error-codes"]) ? data["error-codes"] : []
+  };
 }

@@ -11,7 +11,7 @@
 
 ## 3) Variables de entorno (Pages > Settings > Environment variables)
 Obligatorias:
-- `TURNSTILE_SECRET`
+- `TURNSTILE_SECRET_KEY`
 
 Recomendadas:
 - `MAIL_TO` = `mariano.ibanez@marlowhispanica.es`
@@ -32,7 +32,8 @@ Opcional:
 4. Pega el **site key** en `main.js`:
    - `const TURNSTILE_SITE_KEY = "YOUR_TURNSTILE_SITE_KEY";`
 
-El secret se configura en `TURNSTILE_SECRET` (paso 3).
+El secret se configura en `TURNSTILE_SECRET_KEY` (paso 3).
+Compatibilidad: tambien se acepta `TURNSTILE_SECRET` como fallback.
 
 ## 5) Probar endpoints
 Una vez desplegado:

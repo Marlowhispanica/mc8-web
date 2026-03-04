@@ -984,7 +984,30 @@ function saveLocal(storageKey, data) {
   } catch (e) {}
 }
 
+function isLocalhost() {
+  const host = window.location.hostname;
+  return host === "localhost" || host === "127.0.0.1" || host === "::1";
+}
+
+function shouldSimulateFormSuccess() {
+  if (!isLocalhost()) return false;
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("simulateForm") === "success") return true;
+  } catch (e) {}
+  try {
+    return localStorage.getItem("SIMULATE_FORM_SUCCESS") === "1";
+  } catch (e) {
+    return false;
+  }
+}
+
 async function postForm(url, data, storageKey) {
+  void storageKey;
+  if (shouldSimulateFormSuccess()) {
+    console.info("Form submission simulated on localhost:", url);
+    return { ok: true, saved: false, status: 200, data: { ok: true, simulated: true } };
+  }
   try {
     const res = await fetch(url, {
       method: "POST",
@@ -997,26 +1020,14 @@ async function postForm(url, data, storageKey) {
       payload = text ? JSON.parse(text) : null;
     } catch (e) {}
 
-    if (res.ok) {
-      if (payload && (payload.success === false || payload.ok === false)) {
-        console.error("Form submission error:", { status: res.status, body: text });
-        return {
-          ok: false,
-          saved: false,
-          status: res.status,
-          errorMessage: payload.error || payload.message || text || `HTTP ${res.status}`
-        };
-      }
-      return { ok: true, saved: false, status: res.status, text, payload };
-    }
+    const responseData = payload && typeof payload === "object" ? payload : {};
+    const isSuccess = res.ok && responseData.ok === true;
+    if (isSuccess) return { ok: true, saved: false, status: res.status, data: responseData };
 
-    console.error("Form submission error:", { status: res.status, body: text });
-    return {
-      ok: false,
-      saved: false,
-      status: res.status,
-      errorMessage: (payload && (payload.error || payload.message)) || text || `HTTP ${res.status}`
-    };
+    const errorCode = typeof responseData.error === "string" ? responseData.error : "unknown_error";
+    const errorMessage = `${res.status}: ${errorCode}`;
+    console.error("Form submission error:", { status: res.status, body: text, errorCode });
+    return { ok: false, saved: false, status: res.status, data: responseData, errorMessage };
   } catch (err) {
     console.error("Form submission failed:", err);
     return {
@@ -1024,7 +1035,7 @@ async function postForm(url, data, storageKey) {
       saved: false,
       error: err,
       status: null,
-      errorMessage: err && err.message ? err.message : "Network error"
+      errorMessage: `network: ${err && err.message ? err.message : "request_failed"}`
     };
   }
 }

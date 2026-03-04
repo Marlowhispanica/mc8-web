@@ -1,6 +1,6 @@
 import { verifyTurnstile } from "../_lib/turnstile.js";
 import { sendEmail } from "../_lib/email.js";
-import { jsonResponse } from "../_lib/response.js";
+import { jsonResponse, optionsResponse } from "../_lib/response.js";
 
 function isEmail(value) {
   const email = String(value || "").trim();
@@ -13,55 +13,68 @@ function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+export function onRequestOptions(context) {
+  return optionsResponse(context.request);
+}
+
 export async function onRequestPost(context) {
   const { request, env } = context;
   const contentType = request.headers.get("content-type") || "";
   if (!contentType.includes("application/json")) {
-    return jsonResponse(415, { ok: false, error: "Invalid content type" });
+    return jsonResponse(415, { ok: false, error: "invalid_content_type" }, request);
   }
 
   let data = {};
   try {
     data = await request.json();
   } catch (err) {
-    return jsonResponse(400, { ok: false, error: "Invalid JSON" });
+    return jsonResponse(400, { ok: false, error: "invalid_json" }, request);
   }
 
   const token = String(data.turnstileToken || "").trim();
-  if (!token) return jsonResponse(400, { ok: false, error: "Missing turnstile token" });
+  if (!token) return jsonResponse(400, { ok: false, error: "missing_turnstile_token" }, request);
 
   const name = String(data.name || "").trim();
   const company = String(data.company || "").trim();
   const email = String(data.email || "").trim();
   const rgpd = data.rgpd === true || data.rgpd === "true" || data.rgpd === "on";
 
-  if (!email) return jsonResponse(400, { ok: false, error: "Missing email" });
-  if (!isEmail(email)) return jsonResponse(400, { ok: false, error: "Invalid email format" });
+  if (!email) return jsonResponse(400, { ok: false, error: "missing_email" }, request);
+  if (!isEmail(email)) return jsonResponse(400, { ok: false, error: "invalid_email_format" }, request);
 
   if (!name || !company || !rgpd) {
-    return jsonResponse(400, { ok: false, error: "Validation failed" });
+    return jsonResponse(400, { ok: false, error: "validation_failed" }, request);
   }
 
   const remoteip = request.headers.get("CF-Connecting-IP") || "";
 
+  let turnstileResult;
   try {
-    await verifyTurnstile(env, token, remoteip);
-    await sendEmail(env, "MC8 · Solicitud de información", [
-      { label: "Tipo", value: "Solicitar información" },
+    turnstileResult = await verifyTurnstile(env, token, remoteip);
+  } catch (err) {
+    return jsonResponse(502, { ok: false, error: "turnstile_unavailable", message: err.message }, request);
+  }
+
+  if (!turnstileResult.success) {
+    return jsonResponse(403, { ok: false, error: "turnstile_failed", codes: turnstileResult.codes }, request);
+  }
+
+  try {
+    await sendEmail(env, "MC8 - Solicitud de informacion", [
+      { label: "Tipo", value: "Solicitar informacion" },
       { label: "Nombre", value: name },
       { label: "Empresa", value: company },
       { label: "Email", value: email },
-      { label: "Teléfono", value: data.phone },
+      { label: "Telefono", value: data.phone },
       { label: "m2 aproximados", value: data.area },
       { label: "Fecha objetivo", value: data.date },
       { label: "Mensaje", value: data.message },
-      { label: "RGPD", value: rgpd ? "Sí" : "No" },
-      { label: "Fecha envío", value: new Date().toISOString() }
+      { label: "RGPD", value: rgpd ? "Si" : "No" },
+      { label: "Fecha envio", value: new Date().toISOString() }
     ]);
   } catch (err) {
-    return jsonResponse(500, { ok: false, error: "Send failed" });
+    return jsonResponse(500, { ok: false, error: "send_failed", message: err.message }, request);
   }
 
-  return jsonResponse(200, { ok: true });
+  return jsonResponse(200, { ok: true }, request);
 }
-
