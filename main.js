@@ -870,17 +870,17 @@ async function postForm(url, data, storageKey) {
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(data)
     });
-    if (!res.ok) return { ok: false, saved: false };
+    if (res.status !== 200) return { ok: false, saved: false, status: res.status };
     try {
       const payload = await res.json();
       if (payload && (payload.success === false || payload.ok === false)) {
-        return { ok: false, saved: false };
+        return { ok: false, saved: false, status: res.status };
       }
     } catch (e) {}
-    return { ok: true, saved: false };
+    return { ok: true, saved: false, status: res.status };
   } catch (err) {
     saveLocal(storageKey, data);
-    return { ok: false, saved: true, error: err };
+    return { ok: false, saved: true, error: err, status: null };
   }
 }
 
@@ -943,6 +943,41 @@ function setupForm() {
       if (dossierLink) dossierLink.setAttribute("href", "#");
       showFormSuccess(status);
     }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = i18n[currentLang].status.loading;
+      }
+      if (submitBtn) submitBtn.disabled = true;
+
+      const result = await postForm("/api/lead", {
+        name: form.name.value.trim(),
+        company: form.company.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        area: form.area ? form.area.value.trim() : "",
+        date: form.date ? form.date.value.trim() : "",
+        message: form.message ? form.message.value.trim() : "",
+        rgpd: form.rgpd.checked,
+        turnstileToken: getTurnstileToken(form)
+      }, "mc8_leads");
+
+      if (submitBtn) submitBtn.disabled = false;
+      if (result.ok) {
+        window.location.href = "/gracias.html";
+        return;
+      }
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+      }
+      resetTurnstile(form);
+    });
 
     formInitialized = true;
   }
@@ -1050,6 +1085,40 @@ function setupScheduleModal() {
     const today = new Date().toISOString().split("T")[0];
     const dateInput = document.getElementById("visit-date");
     if (dateInput) dateInput.setAttribute("min", today);
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = i18n[currentLang].status.loading;
+      }
+      if (submitBtn) submitBtn.disabled = true;
+
+      const result = await postForm("/api/visit", {
+        visit_name: form.visit_name.value.trim(),
+        visit_company: form.visit_company.value.trim(),
+        visit_email: form.visit_email.value.trim(),
+        visit_phone: form.visit_phone.value.trim(),
+        visit_date: form.visit_date.value.trim(),
+        visit_time: form.visit_time.value.trim(),
+        visit_notes: form.visit_notes ? form.visit_notes.value.trim() : "",
+        turnstileToken: getTurnstileToken(form)
+      }, "mc8_visits");
+
+      if (submitBtn) submitBtn.disabled = false;
+      if (result.ok) {
+        window.location.href = "/gracias.html";
+        return;
+      }
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+      }
+      resetTurnstile(form);
+    });
 
   scheduleInitialized = true;
 }
@@ -1218,6 +1287,44 @@ function setupPlansModal() {
       openModal();
       showFormSuccess(status);
     }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = i18n[currentLang].status.loading;
+      }
+      if (submitBtn) submitBtn.disabled = true;
+
+      const result = await postForm("/api/plans", {
+        plans_name: form.plans_name.value.trim(),
+        plans_company: form.plans_company.value.trim(),
+        plans_role: form.plans_role.value.trim(),
+        plans_employees: form.plans_employees.value.trim(),
+        plans_email: form.plans_email.value.trim(),
+        plans_phone: form.plans_phone.value.trim(),
+        plans_area: form.plans_area ? form.plans_area.value.trim() : "",
+        plans_date: form.plans_date ? form.plans_date.value.trim() : "",
+        plans_typology: form.plans_typology.value.trim(),
+        plans_needs: form.plans_needs ? form.plans_needs.value.trim() : "",
+        plans_rgpd: form.plans_rgpd.checked,
+        turnstileToken: getTurnstileToken(form)
+      }, "mc8_plans");
+
+      if (submitBtn) submitBtn.disabled = false;
+      if (result.ok) {
+        window.location.href = "/gracias.html";
+        return;
+      }
+
+      if (status) {
+        status.classList.remove("success");
+        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+      }
+      resetTurnstile(form);
+    });
 
     plansModalInitialized = true;
   }
