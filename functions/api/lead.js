@@ -1,5 +1,6 @@
 import { verifyTurnstile } from "../_lib/turnstile.js";
-import { sendEmail } from "../_lib/email.js";
+import { sendEmail, extractEmailError } from "../_lib/email.js";
+import { saveLeadBackup } from "../_lib/lead-backup.js";
 import { jsonResponse, optionsResponse } from "../_lib/response.js";
 
 function isEmail(value) {
@@ -59,6 +60,26 @@ export async function onRequestPost(context) {
     return jsonResponse(403, { ok: false, error: "turnstile_failed", codes: turnstileResult.codes }, request);
   }
 
+  const backupPayload = {
+    name,
+    company,
+    email,
+    phone: data.phone,
+    area: data.area,
+    date: data.date,
+    message: data.message,
+    rgpd
+  };
+
+  try {
+    await saveLeadBackup(env, request, "lead", backupPayload);
+  } catch (err) {
+    console.error("[lead] backup_failed", {
+      error: err?.message || "unknown_backup_error",
+      stack: err?.stack || null
+    });
+  }
+
   try {
     await sendEmail(env, "MC8 - Solicitud de informacion", [
       { label: "Tipo", value: "Solicitar informacion" },
@@ -73,7 +94,18 @@ export async function onRequestPost(context) {
       { label: "Fecha envio", value: new Date().toISOString() }
     ]);
   } catch (err) {
-    return jsonResponse(500, { ok: false, error: "send_failed", message: err.message }, request);
+    const emailError = extractEmailError(err);
+    const providerStatus = emailError.status ?? "unknown_status";
+    const providerBody = String(emailError.body || emailError.message || "unknown_email_error").trim();
+    const failureMessage = `${providerStatus}: ${providerBody}`;
+    console.error("[lead] email_failed", {
+      provider: emailError.provider,
+      status: emailError.status,
+      body: emailError.body,
+      message: emailError.message,
+      stack: err?.stack || null
+    });
+    return jsonResponse(500, { ok: false, error: "send_failed", message: failureMessage }, request);
   }
 
   return jsonResponse(200, { ok: true }, request);

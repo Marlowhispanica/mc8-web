@@ -1,5 +1,6 @@
 import { verifyTurnstile } from "../_lib/turnstile.js";
-import { sendEmail } from "../_lib/email.js";
+import { sendEmail, extractEmailError } from "../_lib/email.js";
+import { saveLeadBackup } from "../_lib/lead-backup.js";
 import { jsonResponse, optionsResponse } from "../_lib/response.js";
 
 function isEmail(value) {
@@ -62,6 +63,29 @@ export async function onRequestPost(context) {
     return jsonResponse(403, { ok: false, error: "turnstile_failed", codes: turnstileResult.codes }, request);
   }
 
+  const backupPayload = {
+    plans_name: name,
+    plans_company: company,
+    plans_role: role,
+    plans_employees: employees,
+    plans_email: email,
+    plans_phone: data.plans_phone,
+    plans_area: data.plans_area,
+    plans_date: data.plans_date,
+    plans_typology: typology,
+    plans_needs: data.plans_needs,
+    plans_rgpd: rgpd
+  };
+
+  try {
+    await saveLeadBackup(env, request, "plans", backupPayload);
+  } catch (err) {
+    console.error("[plans] backup_failed", {
+      error: err?.message || "unknown_backup_error",
+      stack: err?.stack || null
+    });
+  }
+
   try {
     await sendEmail(env, "MC8 - Solicitud de planos a medida", [
       { label: "Tipo", value: "Planos a medida" },
@@ -79,7 +103,18 @@ export async function onRequestPost(context) {
       { label: "Fecha envio", value: new Date().toISOString() }
     ]);
   } catch (err) {
-    return jsonResponse(500, { ok: false, error: "send_failed", message: err.message }, request);
+    const emailError = extractEmailError(err);
+    const providerStatus = emailError.status ?? "unknown_status";
+    const providerBody = String(emailError.body || emailError.message || "unknown_email_error").trim();
+    const failureMessage = `${providerStatus}: ${providerBody}`;
+    console.error("[plans] email_failed", {
+      provider: emailError.provider,
+      status: emailError.status,
+      body: emailError.body,
+      message: emailError.message,
+      stack: err?.stack || null
+    });
+    return jsonResponse(500, { ok: false, error: "send_failed", message: failureMessage }, request);
   }
 
   return jsonResponse(200, { ok: true }, request);
