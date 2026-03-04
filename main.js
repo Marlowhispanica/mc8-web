@@ -870,17 +870,39 @@ async function postForm(url, data, storageKey) {
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(data)
     });
-    if (res.status !== 200) return { ok: false, saved: false, status: res.status };
+    const text = await res.text();
+    let payload = null;
     try {
-      const payload = await res.json();
-      if (payload && (payload.success === false || payload.ok === false)) {
-        return { ok: false, saved: false, status: res.status };
-      }
+      payload = text ? JSON.parse(text) : null;
     } catch (e) {}
-    return { ok: true, saved: false, status: res.status };
+
+    if (res.ok) {
+      if (payload && (payload.success === false || payload.ok === false)) {
+        return {
+          ok: false,
+          saved: false,
+          status: res.status,
+          errorMessage: payload.error || payload.message || text || `HTTP ${res.status}`
+        };
+      }
+      return { ok: true, saved: false, status: res.status, text, payload };
+    }
+
+    return {
+      ok: false,
+      saved: false,
+      status: res.status,
+      errorMessage: (payload && (payload.error || payload.message)) || text || `HTTP ${res.status}`
+    };
   } catch (err) {
-    saveLocal(storageKey, data);
-    return { ok: false, saved: true, error: err, status: null };
+    console.error("Form submission failed:", err);
+    return {
+      ok: false,
+      saved: false,
+      error: err,
+      status: null,
+      errorMessage: err && err.message ? err.message : "Network error"
+    };
   }
 }
 
@@ -974,7 +996,7 @@ function setupForm() {
 
       if (status) {
         status.classList.remove("success");
-        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+        status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
     });
@@ -1115,7 +1137,7 @@ function setupScheduleModal() {
 
       if (status) {
         status.classList.remove("success");
-        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+        status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
     });
@@ -1321,7 +1343,7 @@ function setupPlansModal() {
 
       if (status) {
         status.classList.remove("success");
-        status.textContent = result.saved ? i18n[currentLang].status.offline : i18n[currentLang].status.error;
+        status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
     });
