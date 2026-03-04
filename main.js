@@ -10,9 +10,6 @@ const imageMap = {
   exteriorV2: "assets/exterior-courtyard-stairs.jpg"
 };
 
-const TURNSTILE_SITE_KEY = "";
-let activeTurnstileWidget = null;
-
 const imgIds = {
   hero: "img-hero",
   terrace: "img-terrace",
@@ -267,8 +264,7 @@ const i18n = {
       required: "Campo obligatorio",
       email: "Introduce un email corporativo válido",
       phone: "Introduce un teléfono válido",
-      rgpd: "Debes aceptar la política de privacidad",
-      turnstile: "Completa la verificación anti-spam"
+      rgpd: "Debes aceptar la política de privacidad"
     },
     status: {
       loading: "Enviando…",
@@ -530,8 +526,7 @@ const i18n = {
       required: "This field is required",
       email: "Please enter a valid corporate email",
       phone: "Please enter a valid phone number",
-      rgpd: "You must accept the privacy policy",
-      turnstile: "Please complete the anti-spam verification"
+      rgpd: "You must accept the privacy policy"
     },
     status: {
       loading: "Sending…",
@@ -801,139 +796,6 @@ function validatePhone(value) {
   return /^[+\d\s()\-]{7,}$/.test(value);
 }
 
-function applyTurnstileSiteKey() {
-  if (!TURNSTILE_SITE_KEY) return;
-  document.querySelectorAll(".cf-turnstile").forEach((el) => {
-    el.setAttribute("data-sitekey", TURNSTILE_SITE_KEY);
-  });
-}
-
-applyTurnstileSiteKey();
-
-function getTurnstileForms() {
-  return Array.from(document.querySelectorAll("form")).filter((form) => !!form.querySelector(".cf-turnstile"));
-}
-
-function getTurnstileWidgets() {
-  return Array.from(document.querySelectorAll(".cf-turnstile"));
-}
-
-function getFormStatusEl(form) {
-  return form ? form.querySelector(".form-status") : null;
-}
-
-function setTurnstileMessage(form) {
-  const status = getFormStatusEl(form);
-  if (!status) return;
-  status.classList.remove("success");
-  status.textContent = i18n[currentLang].errors.turnstile;
-}
-
-function storeTurnstileToken(form, token) {
-  if (!form || !token) return;
-  form.dataset.turnstileToken = token;
-}
-
-function clearTurnstileToken(form, showMessage = false) {
-  if (!form) return;
-  form.dataset.turnstileToken = "";
-  if (showMessage) setTurnstileMessage(form);
-}
-
-function getStoredTurnstileToken(form) {
-  if (!form) return "";
-  return String(form.dataset.turnstileToken || "").trim();
-}
-
-function getFormFromWidget(widget) {
-  if (!widget) return null;
-  return widget.closest("form");
-}
-
-function markActiveTurnstileWidget(widget) {
-  if (!widget) return;
-  activeTurnstileWidget = widget;
-}
-
-function findActiveTurnstileWidget() {
-  if (activeTurnstileWidget && document.contains(activeTurnstileWidget)) return activeTurnstileWidget;
-
-  const focused = document.activeElement;
-  if (focused) {
-    const focusedWidget = focused.closest(".cf-turnstile");
-    if (focusedWidget) {
-      activeTurnstileWidget = focusedWidget;
-      return focusedWidget;
-    }
-    const focusedForm = focused.closest("form");
-    if (focusedForm) {
-      const formWidget = focusedForm.querySelector(".cf-turnstile");
-      if (formWidget) {
-        activeTurnstileWidget = formWidget;
-        return formWidget;
-      }
-    }
-  }
-
-  const widgets = getTurnstileWidgets();
-  if (widgets.length === 1) {
-    activeTurnstileWidget = widgets[0];
-    return widgets[0];
-  }
-  return null;
-}
-
-function setupTurnstileWidgetTracking() {
-  getTurnstileWidgets().forEach((widget) => {
-    ["mousedown", "touchstart", "focusin", "click"].forEach((evt) => {
-      widget.addEventListener(evt, () => markActiveTurnstileWidget(widget), { passive: true });
-    });
-    const form = getFormFromWidget(widget);
-    if (form) {
-      form.addEventListener("focusin", () => markActiveTurnstileWidget(widget));
-      form.addEventListener("pointerdown", () => markActiveTurnstileWidget(widget));
-    }
-  });
-}
-
-function clearTokenByActiveWidget(showMessage) {
-  const widget = findActiveTurnstileWidget();
-  if (widget) {
-    const form = getFormFromWidget(widget);
-    if (form) clearTurnstileToken(form, showMessage);
-    return;
-  }
-  getTurnstileForms().forEach((form) => clearTurnstileToken(form, showMessage));
-}
-
-window.onTurnstileSuccess = function(token) {
-  const widget = findActiveTurnstileWidget();
-  if (widget) {
-    const form = getFormFromWidget(widget);
-    if (form) {
-      storeTurnstileToken(form, token);
-      return;
-    }
-  }
-  const forms = getTurnstileForms();
-  for (const form of forms) {
-    const input = form.querySelector("input[name='cf-turnstile-response']");
-    if (input && input.value && input.value.trim() === token) {
-      storeTurnstileToken(form, token);
-      return;
-    }
-  }
-};
-
-window.onTurnstileExpired = function() {
-  clearTokenByActiveWidget(true);
-};
-
-window.onTurnstileError = function(errorCode) {
-  console.error("Turnstile error:", errorCode);
-  clearTokenByActiveWidget(true);
-};
-
 function setFormRedirect(form, key) {
   void key;
   const input = form.querySelector("input[name='redirect']");
@@ -953,22 +815,6 @@ function getSuccessKey() {
     return params.get("success");
   } catch (e) {
     return null;
-  }
-}
-
-function resetTurnstile(form) {
-  if (!window.turnstile) return;
-  const widget = form.querySelector(".cf-turnstile");
-  try {
-    if (widget) {
-      window.turnstile.reset(widget);
-      return;
-    }
-    window.turnstile.reset();
-  } catch (e) {
-    try {
-      window.turnstile.reset();
-    } catch (ignored) {}
   }
 }
 
@@ -1061,16 +907,6 @@ function setupForm() {
     form.addEventListener("submit", (e) => {
       if (!validate()) {
         e.preventDefault();
-        return;
-      }
-      const token = getStoredTurnstileToken(form);
-      console.log("Turnstile token length:", token ? token.length : 0);
-      if (!token || token.length <= 20) {
-        e.preventDefault();
-        if (status) {
-          status.classList.remove("success");
-          status.textContent = i18n[currentLang].errors.turnstile;
-        }
         return;
       }
 
@@ -1191,16 +1027,6 @@ function setupScheduleModal() {
     form.addEventListener("submit", (e) => {
       if (!validate()) {
         e.preventDefault();
-        return;
-      }
-      const token = getStoredTurnstileToken(form);
-      console.log("Turnstile token length:", token ? token.length : 0);
-      if (!token || token.length <= 20) {
-        e.preventDefault();
-        if (status) {
-          status.classList.remove("success");
-          status.textContent = i18n[currentLang].errors.turnstile;
-        }
         return;
       }
 
@@ -1384,16 +1210,6 @@ function setupPlansModal() {
         e.preventDefault();
         return;
       }
-      const token = getStoredTurnstileToken(form);
-      console.log("Turnstile token length:", token ? token.length : 0);
-      if (!token || token.length <= 20) {
-        e.preventDefault();
-        if (status) {
-          status.classList.remove("success");
-          status.textContent = i18n[currentLang].errors.turnstile;
-        }
-        return;
-      }
 
       if (status) {
         status.classList.remove("success");
@@ -1476,7 +1292,6 @@ function setupLightbox() {
 
 function init() {
   applyImages();
-  applyTurnstileSiteKey();
   const lang = getLangFromHash();
   window.setLang(lang);
   document.addEventListener("click", (e) => {
@@ -1495,7 +1310,6 @@ function init() {
   setupTabs();
   setupLightbox();
   setupStickyLeadCta();
-  setupTurnstileWidgetTracking();
   updateNavLinks(lang);
 
   const navSelect = document.getElementById("nav-index");

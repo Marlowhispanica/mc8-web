@@ -107,9 +107,7 @@
       <p class="modal-sub" data-i18n="plans.sub">Cuéntanos tu necesidad y te prepararemos una propuesta de planos adaptada</p>
       <form id="plans-form" class="lead-form" novalidate action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="b1f9caaf-3ced-4111-b030-1124ad67f1e0" />
-        <input type="checkbox" name="botcheck" style="display:none;">
         <input type="hidden" name="redirect" value="/gracias.html" />
-        <input type="hidden" name="subject" value="MC8 · Planos a medida" />
   <div class="form-grid">
     <label class="field">
       <span data-i18n="plans.name">Nombre y apellidos</span>
@@ -171,7 +169,6 @@
       <span class="error" data-error-for="plans_rgpd"></span>
     </label>
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAACmI0-H9YNuH71O3" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" id="plans-submit">Enviar solicitud</button>
           <span class="form-status" id="plans-status"></span>
@@ -190,9 +187,7 @@
       <p class="modal-sub" data-i18n="cta.p1">Te enviamos el dossier completo y te ayudamos a definir la configuración ideal para tu equipo</p>
       <form id="lead-form" class="lead-form" novalidate action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="b8cfc4a4-12a4-46f9-afcc-bbdee8fad9c4" />
-        <input type="checkbox" name="botcheck" style="display:none;">
         <input type="hidden" name="redirect" value="/gracias.html" />
-        <input type="hidden" name="subject" value="MC8 · Solicitud de información" />
         <div class="form-grid">
           <label class="field">
             <span data-i18n="form.name">Nombre y apellidos</span>
@@ -233,7 +228,6 @@
             <span class="error" data-error-for="rgpd"></span>
           </label>
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAACmI0-H9YNuH71O3" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" id="submit-btn">Enviar solicitud</button>
           <span class="form-status" id="form-status"></span>
@@ -252,9 +246,7 @@
       <p class="modal-sub" data-i18n="schedule.sub">Déjanos tu disponibilidad y organizaremos la visita</p>
       <form id="schedule-form" class="lead-form" novalidate action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="abd6ca4b-7399-4ff0-8ba4-7443220bfe63" />
-        <input type="checkbox" name="botcheck" style="display:none;">
         <input type="hidden" name="redirect" value="/gracias.html" />
-        <input type="hidden" name="subject" value="MC8 · Agendar visita" />
         <div class="form-grid">
           <label class="field">
             <span data-i18n="schedule.name">Nombre y apellidos</span>
@@ -297,7 +289,6 @@
             <textarea name="visit_notes" rows="3"></textarea>
           </label>
         </div>
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAACmI0-H9YNuH71O3" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" data-error-callback="onTurnstileError"></div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit" id="visit-submit">Enviar solicitud</button>
           <span class="form-status" id="visit-status"></span>
@@ -324,7 +315,6 @@
     </div>
   </footer>
 
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="main.js?v=20260302a"></script>
 </body>
 </html>
