@@ -800,7 +800,7 @@ function setFormRedirect(form, key) {
   void key;
   const input = form.querySelector("input[name='redirect']");
   if (!input) return;
-  input.value = "/gracias.html";
+  input.value = "https://mc8malaga.com/gracias.html";
 }
 
 function showFormSuccess(statusEl) {
