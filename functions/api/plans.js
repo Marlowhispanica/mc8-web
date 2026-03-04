@@ -3,7 +3,14 @@ import { sendEmail } from "../_lib/email.js";
 import { jsonResponse } from "../_lib/response.js";
 
 function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || ""));
+  const email = String(value || "").trim();
+  if (!email) return false;
+  if (email.length > 254) return false;
+  const parts = email.split("@");
+  if (parts.length !== 2) return false;
+  if (!parts[0] || !parts[1]) return false;
+  if (parts[0].length > 64) return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 export async function onRequestPost(context) {
@@ -31,7 +38,10 @@ export async function onRequestPost(context) {
   const typology = String(data.plans_typology || "").trim();
   const rgpd = data.plans_rgpd === true || data.plans_rgpd === "true" || data.plans_rgpd === "on";
 
-  if (!name || !company || !role || !employees || !email || !isEmail(email) || !typology || !rgpd) {
+  if (!email) return jsonResponse(400, { ok: false, error: "Missing email" });
+  if (!isEmail(email)) return jsonResponse(400, { ok: false, error: "Invalid email format" });
+
+  if (!name || !company || !role || !employees || !typology || !rgpd) {
     return jsonResponse(400, { ok: false, error: "Validation failed" });
   }
 

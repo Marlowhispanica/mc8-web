@@ -10,7 +10,8 @@ const imageMap = {
   exteriorV2: "assets/exterior-courtyard-stairs.jpg"
 };
 
-const TURNSTILE_SITE_KEY = "YOUR_TURNSTILE_SITE_KEY";
+const TURNSTILE_SITE_KEY = "";
+let activeTurnstileWidget = null;
 
 const imgIds = {
   hero: "img-hero",
@@ -800,12 +801,6 @@ function validatePhone(value) {
   return /^[+\d\s()\-]{7,}$/.test(value);
 }
 
-function isCorporateEmail(value) {
-  const freeDomains = ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com", "proton.me", "protonmail.com"];
-  const domain = value.split("@")[1] || "";
-  return domain && !freeDomains.includes(domain.toLowerCase());
-}
-
 function applyTurnstileSiteKey() {
   if (!TURNSTILE_SITE_KEY) return;
   document.querySelectorAll(".cf-turnstile").forEach((el) => {
@@ -814,6 +809,130 @@ function applyTurnstileSiteKey() {
 }
 
 applyTurnstileSiteKey();
+
+function getTurnstileForms() {
+  return Array.from(document.querySelectorAll("form")).filter((form) => !!form.querySelector(".cf-turnstile"));
+}
+
+function getTurnstileWidgets() {
+  return Array.from(document.querySelectorAll(".cf-turnstile"));
+}
+
+function getFormStatusEl(form) {
+  return form ? form.querySelector(".form-status") : null;
+}
+
+function setTurnstileMessage(form) {
+  const status = getFormStatusEl(form);
+  if (!status) return;
+  status.classList.remove("success");
+  status.textContent = i18n[currentLang].errors.turnstile;
+}
+
+function storeTurnstileToken(form, token) {
+  if (!form || !token) return;
+  form.dataset.turnstileToken = token;
+}
+
+function clearTurnstileToken(form, showMessage = false) {
+  if (!form) return;
+  form.dataset.turnstileToken = "";
+  if (showMessage) setTurnstileMessage(form);
+}
+
+function getStoredTurnstileToken(form) {
+  if (!form) return "";
+  return String(form.dataset.turnstileToken || "").trim();
+}
+
+function getFormFromWidget(widget) {
+  if (!widget) return null;
+  return widget.closest("form");
+}
+
+function markActiveTurnstileWidget(widget) {
+  if (!widget) return;
+  activeTurnstileWidget = widget;
+}
+
+function findActiveTurnstileWidget() {
+  if (activeTurnstileWidget && document.contains(activeTurnstileWidget)) return activeTurnstileWidget;
+
+  const focused = document.activeElement;
+  if (focused) {
+    const focusedWidget = focused.closest(".cf-turnstile");
+    if (focusedWidget) {
+      activeTurnstileWidget = focusedWidget;
+      return focusedWidget;
+    }
+    const focusedForm = focused.closest("form");
+    if (focusedForm) {
+      const formWidget = focusedForm.querySelector(".cf-turnstile");
+      if (formWidget) {
+        activeTurnstileWidget = formWidget;
+        return formWidget;
+      }
+    }
+  }
+
+  const widgets = getTurnstileWidgets();
+  if (widgets.length === 1) {
+    activeTurnstileWidget = widgets[0];
+    return widgets[0];
+  }
+  return null;
+}
+
+function setupTurnstileWidgetTracking() {
+  getTurnstileWidgets().forEach((widget) => {
+    ["mousedown", "touchstart", "focusin", "click"].forEach((evt) => {
+      widget.addEventListener(evt, () => markActiveTurnstileWidget(widget), { passive: true });
+    });
+    const form = getFormFromWidget(widget);
+    if (form) {
+      form.addEventListener("focusin", () => markActiveTurnstileWidget(widget));
+      form.addEventListener("pointerdown", () => markActiveTurnstileWidget(widget));
+    }
+  });
+}
+
+function clearTokenByActiveWidget(showMessage) {
+  const widget = findActiveTurnstileWidget();
+  if (widget) {
+    const form = getFormFromWidget(widget);
+    if (form) clearTurnstileToken(form, showMessage);
+    return;
+  }
+  getTurnstileForms().forEach((form) => clearTurnstileToken(form, showMessage));
+}
+
+window.onTurnstileSuccess = function(token) {
+  const widget = findActiveTurnstileWidget();
+  if (widget) {
+    const form = getFormFromWidget(widget);
+    if (form) {
+      storeTurnstileToken(form, token);
+      return;
+    }
+  }
+  const forms = getTurnstileForms();
+  for (const form of forms) {
+    const input = form.querySelector("input[name='cf-turnstile-response']");
+    if (input && input.value && input.value.trim() === token) {
+      storeTurnstileToken(form, token);
+      return;
+    }
+  }
+};
+
+window.onTurnstileExpired = function() {
+  clearTokenByActiveWidget(true);
+};
+
+window.onTurnstileError = function(errorCode) {
+  console.error("Turnstile error:", errorCode);
+  clearTokenByActiveWidget(true);
+};
 
 function setFormRedirect(form, key) {
   const input = form.querySelector("input[name='redirect']");
@@ -841,18 +960,20 @@ function getSuccessKey() {
   }
 }
 
-function getTurnstileToken(form) {
-  const input = form.querySelector("input[name='cf-turnstile-response']");
-  return input ? input.value.trim() : "";
-}
-
 function resetTurnstile(form) {
   if (!window.turnstile) return;
   const widget = form.querySelector(".cf-turnstile");
-  if (!widget) return;
   try {
-    window.turnstile.reset(widget);
-  } catch (e) {}
+    if (widget) {
+      window.turnstile.reset(widget);
+      return;
+    }
+    window.turnstile.reset();
+  } catch (e) {
+    try {
+      window.turnstile.reset();
+    } catch (ignored) {}
+  }
 }
 
 function saveLocal(storageKey, data) {
@@ -878,6 +999,7 @@ async function postForm(url, data, storageKey) {
 
     if (res.ok) {
       if (payload && (payload.success === false || payload.ok === false)) {
+        console.error("Form submission error:", { status: res.status, body: text });
         return {
           ok: false,
           saved: false,
@@ -888,6 +1010,7 @@ async function postForm(url, data, storageKey) {
       return { ok: true, saved: false, status: res.status, text, payload };
     }
 
+    console.error("Form submission error:", { status: res.status, body: text });
     return {
       ok: false,
       saved: false,
@@ -942,7 +1065,7 @@ function setupForm() {
       setError("company", i18n[currentLang].errors.required);
       ok = false;
     }
-    if (!email || !validateEmail(email) || !isCorporateEmail(email)) {
+    if (!email || !validateEmail(email)) {
       setError("email", i18n[currentLang].errors.email);
       ok = false;
     }
@@ -969,6 +1092,15 @@ function setupForm() {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!validate()) return;
+      const token = getStoredTurnstileToken(form);
+      console.log("Turnstile token length:", token ? token.length : 0);
+      if (!token || token.length <= 20) {
+        if (status) {
+          status.classList.remove("success");
+          status.textContent = i18n[currentLang].errors.turnstile;
+        }
+        return;
+      }
 
       if (status) {
         status.classList.remove("success");
@@ -985,11 +1117,13 @@ function setupForm() {
         date: form.date ? form.date.value.trim() : "",
         message: form.message ? form.message.value.trim() : "",
         rgpd: form.rgpd.checked,
-        turnstileToken: getTurnstileToken(form)
+        turnstileToken: token
       }, "mc8_leads");
 
       if (submitBtn) submitBtn.disabled = false;
       if (result.ok) {
+        resetTurnstile(form);
+        clearTurnstileToken(form, false);
         window.location.href = "/gracias.html";
         return;
       }
@@ -999,6 +1133,7 @@ function setupForm() {
         status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
+      clearTurnstileToken(form, false);
     });
 
     formInitialized = true;
@@ -1089,7 +1224,7 @@ function setupScheduleModal() {
 
     if (!name) { setError("visit_name", i18n[currentLang].errors.required); ok = false; }
     if (!company) { setError("visit_company", i18n[currentLang].errors.required); ok = false; }
-    if (!email || !validateEmail(email) || !isCorporateEmail(email)) { setError("visit_email", i18n[currentLang].errors.email); ok = false; }
+    if (!email || !validateEmail(email)) { setError("visit_email", i18n[currentLang].errors.email); ok = false; }
     if (!phone || !validatePhone(phone)) { setError("visit_phone", i18n[currentLang].errors.phone); ok = false; }
     if (!date) { setError("visit_date", i18n[currentLang].errors.required); ok = false; }
     if (!time) { setError("visit_time", i18n[currentLang].errors.required); ok = false; }
@@ -1111,6 +1246,15 @@ function setupScheduleModal() {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!validate()) return;
+      const token = getStoredTurnstileToken(form);
+      console.log("Turnstile token length:", token ? token.length : 0);
+      if (!token || token.length <= 20) {
+        if (status) {
+          status.classList.remove("success");
+          status.textContent = i18n[currentLang].errors.turnstile;
+        }
+        return;
+      }
 
       if (status) {
         status.classList.remove("success");
@@ -1126,11 +1270,13 @@ function setupScheduleModal() {
         visit_date: form.visit_date.value.trim(),
         visit_time: form.visit_time.value.trim(),
         visit_notes: form.visit_notes ? form.visit_notes.value.trim() : "",
-        turnstileToken: getTurnstileToken(form)
+        turnstileToken: token
       }, "mc8_visits");
 
       if (submitBtn) submitBtn.disabled = false;
       if (result.ok) {
+        resetTurnstile(form);
+        clearTurnstileToken(form, false);
         window.location.href = "/gracias.html";
         return;
       }
@@ -1140,6 +1286,7 @@ function setupScheduleModal() {
         status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
+      clearTurnstileToken(form, false);
     });
 
   scheduleInitialized = true;
@@ -1295,7 +1442,7 @@ function setupPlansModal() {
     if (!company) { setError("plans_company", i18n[currentLang].errors.required); ok = false; }
     if (!role) { setError("plans_role", i18n[currentLang].errors.required); ok = false; }
     if (!employees) { setError("plans_employees", i18n[currentLang].errors.required); ok = false; }
-    if (!email || !validateEmail(email) || !isCorporateEmail(email)) { setError("plans_email", i18n[currentLang].errors.email); ok = false; }
+    if (!email || !validateEmail(email)) { setError("plans_email", i18n[currentLang].errors.email); ok = false; }
     if (!phone || !validatePhone(phone)) { setError("plans_phone", i18n[currentLang].errors.phone); ok = false; }
     if (!typology) { setError("plans_typology", i18n[currentLang].errors.required); ok = false; }
     if (!rgpd) { setError("plans_rgpd", i18n[currentLang].errors.rgpd); ok = false; }
@@ -1313,6 +1460,15 @@ function setupPlansModal() {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!validate()) return;
+      const token = getStoredTurnstileToken(form);
+      console.log("Turnstile token length:", token ? token.length : 0);
+      if (!token || token.length <= 20) {
+        if (status) {
+          status.classList.remove("success");
+          status.textContent = i18n[currentLang].errors.turnstile;
+        }
+        return;
+      }
 
       if (status) {
         status.classList.remove("success");
@@ -1332,11 +1488,13 @@ function setupPlansModal() {
         plans_typology: form.plans_typology.value.trim(),
         plans_needs: form.plans_needs ? form.plans_needs.value.trim() : "",
         plans_rgpd: form.plans_rgpd.checked,
-        turnstileToken: getTurnstileToken(form)
+        turnstileToken: token
       }, "mc8_plans");
 
       if (submitBtn) submitBtn.disabled = false;
       if (result.ok) {
+        resetTurnstile(form);
+        clearTurnstileToken(form, false);
         window.location.href = "/gracias.html";
         return;
       }
@@ -1346,6 +1504,7 @@ function setupPlansModal() {
         status.textContent = result.errorMessage || i18n[currentLang].status.error;
       }
       resetTurnstile(form);
+      clearTurnstileToken(form, false);
     });
 
     plansModalInitialized = true;
@@ -1441,6 +1600,7 @@ function init() {
   setupTabs();
   setupLightbox();
   setupStickyLeadCta();
+  setupTurnstileWidgetTracking();
   updateNavLinks(lang);
 
   const navSelect = document.getElementById("nav-index");

@@ -1168,6 +1168,12 @@ input, select, textarea {
   display: none;
 }
 
+.cf-turnstile {
+  margin: 10px 0 14px;
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* Tabs */
 .tabs {
   border: 1px solid var(--line);
