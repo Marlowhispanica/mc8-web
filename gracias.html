@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/favicon.ico?v=1">
-  <title>Gracias por tu solicitud | MC8 Malaga TechPark</title>
+  <title data-i18n="thanksPage.title">Gracias por tu solicitud | MC8 Malaga TechPark</title>
   <meta name="description" content="Gracias por contactar con MC8. Hemos recibido tu solicitud correctamente." />
   <link rel="canonical" href="https://mc8malaga.com/gracias.html" />
   <link rel="alternate" hreflang="es" href="https://mc8malaga.com/gracias.html#es" />
@@ -57,16 +57,15 @@
     <section class="section thanks-section">
       <div class="container thanks-wrap">
         <div class="thanks-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img" aria-label="Solicitud enviada correctamente">
+          <svg viewBox="0 0 64 64" role="img" aria-label="Solicitud enviada correctamente" data-i18n="thanksPage.iconAria" data-i18n-attr="aria-label">
             <circle cx="32" cy="32" r="30"></circle>
             <path d="M19 33.5L28 42.5L46 24.5"></path>
           </svg>
         </div>
-        <h1 class="page-title thanks-title">Gracias por tu solicitud</h1>
-        <p class="section-lead thanks-subtitle">Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve.</p>
+        <h1 class="page-title thanks-title" data-i18n="thanksPage.h1">Gracias por tu solicitud</h1>
+        <p class="section-lead thanks-subtitle" data-i18n="thanksPage.subtitle">Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve.</p>
         <div class="thanks-actions">
-          <a class="btn btn-primary" href="/index.html">Volver al inicio</a>
-          <a id="gracias-dossier-btn" class="btn btn-outline hidden" href="/assets/dossier.pdf" target="_blank" rel="noopener">Descargar dossier</a>
+          <a class="btn btn-primary" href="/index.html" data-i18n="thanksPage.backHome">Volver al inicio</a>
         </div>
       </div>
     </section>
@@ -90,21 +89,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    (function () {
-      const dossierBtn = document.getElementById("gracias-dossier-btn");
-      if (!dossierBtn) return;
-      fetch(dossierBtn.href, { method: "HEAD" })
-        .then(function (res) {
-          if (!res.ok) return;
-          dossierBtn.classList.remove("hidden");
-        })
-        .catch(function () {
-          /* Keep hidden when the file does not exist */
-        });
-    }());
-  </script>
   <script src="main.js?v=20260302a"></script>
 </body>
 </html>

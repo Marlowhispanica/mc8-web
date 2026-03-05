@@ -237,6 +237,13 @@ const i18n = {
       dossier: "Descargar dossier"
     },
     footer: { rights: "Todos los derechos reservados" },
+    thanksPage: {
+      title: "Gracias por tu solicitud | MC8 Malaga TechPark",
+      h1: "Gracias por tu solicitud",
+      subtitle: "Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve.",
+      iconAria: "Solicitud enviada correctamente",
+      backHome: "Volver al inicio"
+    },
     gallery: {
       h2: "Galería",
       sub: "Recorre los espacios interiores y exteriores del edificio",
@@ -499,6 +506,13 @@ const i18n = {
       dossier: "Download dossier"
     },
     footer: { rights: "All rights reserved" },
+    thanksPage: {
+      title: "Thank you for your request | MC8 Malaga TechPark",
+      h1: "Thank you for your request",
+      subtitle: "We have received your information correctly. Our team will contact you shortly.",
+      iconAria: "Request sent successfully",
+      backHome: "Back to home"
+    },
     gallery: {
       h2: "Gallery",
       sub: "Explore interior and exterior spaces of the building",
@@ -685,7 +699,19 @@ function applyLang(lang) {
       if (val && typeof val === "object") val = val[p];
     }
 
-    if (typeof val === "string") el.textContent = val;
+    if (typeof val === "string" && !el.hasAttribute("data-i18n-attr")) el.textContent = val;
+  });
+
+  document.querySelectorAll("[data-i18n-attr]").forEach(el => {
+    const attr = el.getAttribute("data-i18n-attr");
+    const path = el.getAttribute("data-i18n");
+    if (!attr || !path) return;
+    const parts = path.split(".");
+    let val = dict;
+    for (const p of parts) {
+      if (val && typeof val === "object") val = val[p];
+    }
+    if (typeof val === "string") el.setAttribute(attr, val);
   });
 
   document.querySelectorAll(".lang-btn").forEach(btn => {
