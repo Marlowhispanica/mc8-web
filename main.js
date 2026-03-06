@@ -265,7 +265,15 @@ const i18n = {
       alt13: "Interior con persona caminando junto a ventanales",
       alt14: "Fachada exterior del edificio y Jardín",
       alt15: "Detalle interior de ventanas y columna",
-      alt16: "Vista interior hacia celosía y vegetación"
+      alt16: "Vista interior hacia celosía y vegetación",
+      alt17: "Interior diáfano con escalera y columnas",
+      alt18: "Espacio interior con cerramientos de vidrio",
+      alt19: "Interior con particiones acristaladas y techo de madera",
+      alt20: "Escalera interior con lucernario y techo de madera",
+      alt21: "Zona interior abierta con gran ventanal y celosía",
+      alt22: "Terraza en cubierta con iluminación solar",
+      alt23: "Terraza con vistas arboladas y entorno natural",
+      alt24: "Esquina exterior del edificio con cielo abierto"
     },
     errors: {
       required: "Campo obligatorio",
@@ -534,7 +542,15 @@ const i18n = {
       alt13: "Interior with a person walking near the windows",
       alt14: "Building exterior facade and garden",
       alt15: "Interior detail of windows and column",
-      alt16: "Interior view toward lattice and vegetation"
+      alt16: "Interior view toward lattice and vegetation",
+      alt17: "Open interior space with staircase and columns",
+      alt18: "Interior space with glass enclosures",
+      alt19: "Interior with glass partitions and wooden ceiling",
+      alt20: "Interior staircase with skylight and wooden ceiling",
+      alt21: "Open interior area with large window and lattice",
+      alt22: "Rooftop terrace with sunlight",
+      alt23: "Terrace with tree views and natural surroundings",
+      alt24: "Building exterior corner with open sky"
     },
     errors: {
       required: "This field is required",
@@ -565,18 +581,25 @@ const i18n = {
 
 const galleryImages = [
   { id: "img-gallery-exterior-1", src: "assets/OLD-render-exterior.jpg", altKey: "alt14" },
-  { id: "img-gallery-exterior-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
   { id: "img-gallery-exterior-4", src: "assets/exterior-building-garden-wide.jpg", altKey: "alt4" },
+  { id: "img-gallery-exterior-3", src: "assets/exterior-courtyard-stairs.jpg", altKey: "alt3" },
+  { id: "img-gallery-exterior-5", src: "assets/exterior-building-corner-sky.jpg", altKey: "alt24" },
   { id: "img-gallery-interior-1", src: "assets/OLD-render-interior.jpg", altKey: "alt8" },
-  { id: "img-gallery-interior-2", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt10" },
-  { id: "img-gallery-interior-3", src: "assets/interior-glass-partition-wood-ceiling.jpg", altKey: "alt12" },
-  { id: "img-gallery-interior-4", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
-  { id: "img-gallery-interior-5", src: "assets/interior-staircase-skylight-wood-ceiling.jpg", altKey: "alt15" },
-  { id: "img-gallery-interior-6", src: "assets/interior-bathroom-double-sink-mirrors.jpg", altKey: "alt16" },
-  { id: "img-gallery-interior-7", src: "assets/interior-bathroom-toilets.jpg", altKey: "alt9" },
+  { id: "img-gallery-interior-2", src: "assets/interior-glass-corner-room.jpg", altKey: "alt18" },
+  { id: "img-gallery-interior-3", src: "assets/interior-open-space-columns-wide.jpg", altKey: "alt10" },
+  { id: "img-gallery-interior-4", src: "assets/interior-open-space-columns-staircase.jpg", altKey: "alt17" },
+  { id: "img-gallery-interior-5", src: "assets/interior-open-space-large-window-lattice.jpg", altKey: "alt21" },
+  { id: "img-gallery-interior-6", src: "assets/interior-open-space-columns-glass-left.jpg", altKey: "alt12" },
+  { id: "img-gallery-interior-7", src: "assets/interior-glass-partition-wide-wood-ceiling.jpg", altKey: "alt19" },
+  { id: "img-gallery-interior-8", src: "assets/interior-glass-partition-door-window.jpg", altKey: "alt13" },
+  { id: "img-gallery-interior-9", src: "assets/interior-staircase-skylight-wood-ceiling.jpg", altKey: "alt20" },
+  { id: "img-gallery-interior-10", src: "assets/interior-bathroom-double-sink-mirrors.jpg", altKey: "alt16" },
+  { id: "img-gallery-interior-11", src: "assets/interior-bathroom-toilets.jpg", altKey: "alt9" },
   { id: "img-gallery-terrace-1", src: "assets/OLD-render-terrace.jpg", altKey: "alt1" },
+  { id: "img-gallery-terrace-4", src: "assets/OLD-rooftop-terrace-sun.png", altKey: "alt22" },
   { id: "img-gallery-terrace-2", src: "assets/rooftop-terrace-city-view.jpg", altKey: "alt11" },
-  { id: "img-gallery-terrace-3", src: "assets/rooftop-orange-building-railings.jpg", altKey: "alt5" }
+  { id: "img-gallery-terrace-3", src: "assets/rooftop-orange-building-railings.jpg", altKey: "alt5" },
+  { id: "img-gallery-terrace-5", src: "assets/rooftop-terrace-trees-view.jpg", altKey: "alt23" }
 ];
 
 let currentLang = "es";
@@ -720,6 +743,7 @@ function applyLang(lang) {
 
   updateNavLinks(lang);
   stylizeMC8();
+  stylizeHeroAddressEight();
 }
 
 function getLangFromHash() {
@@ -754,7 +778,7 @@ window.openLightbox = function(img) {
   const lightboxImg = document.getElementById("lightbox-image");
   if (!lightbox || !lightboxImg || !img) return;
   const idx = galleryImages.findIndex(item => item.id === img.id);
-  lightboxImg.dataset.index = idx >= 0 ? String(idx) : "0";
+  lightboxImg.dataset.index = idx >= 0 ? String(idx) : "-1";
   lightboxImg.src = img.src;
   lightboxImg.alt = img.alt || "";
   lightbox.classList.add("is-open");
@@ -774,6 +798,7 @@ function lightboxStep(delta) {
   const lightboxImg = document.getElementById("lightbox-image");
   if (!lightboxImg) return;
   const current = parseInt(lightboxImg.dataset.index || "0", 10);
+  if (current < 0) return;
   const nextIndex = (current + delta + galleryImages.length) % galleryImages.length;
   const next = galleryImages[nextIndex];
   const imgEl = document.getElementById(next.id);
@@ -812,6 +837,15 @@ function stylizeMC8() {
     });
     parent.replaceChild(frag, node);
   });
+}
+
+function stylizeHeroAddressEight() {
+  const address = document.querySelector(".hero-address.overlay");
+  if (!address) return;
+  const text = address.textContent || "";
+  if (!text.includes("8")) return;
+  const safe = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  address.innerHTML = safe.replace("8", '<span class="brand-accent">8</span>');
 }
 
 function validateEmail(value) {

@@ -34,6 +34,60 @@ html, body {
   line-height: 1.5;
 }
 
+body.home-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+body.home-page #main {
+  min-height: 0;
+  display: flex;
+}
+
+body.home-page .container {
+  width: min(1120px, 88%);
+}
+
+body.home-page .hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: clamp(36px, 6vh, 72px) 0;
+}
+
+body.home-page .hero-grid {
+  width: 100%;
+  align-items: center;
+}
+
+body.home-page .hero > .container {
+  width: min(1120px, 86%);
+  padding-inline: clamp(16px, 2.4vw, 36px);
+}
+
+body.home-page .hero .img-frame {
+  height: clamp(280px, 42vh, 480px);
+}
+
+body.home-page .hero-img {
+  transform: translateY(16px);
+}
+
+body.home-page .hero-copy {
+  margin-top: 0;
+  align-self: center;
+}
+
+body.home-page .hero-media {
+  align-self: center;
+}
+
+body.home-page .hero-trust-right {
+  margin-top: 76px;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -244,6 +298,10 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(2.9rem, 5.2vw, 4.6rem);
   font-weight: 700;
+}
+
+body.home-page h1 {
+  font-size: clamp(3.2rem, 5.1vw, 5.1rem);
 }
 
 h2 {
@@ -479,6 +537,72 @@ a:focus-visible {
   margin-top: 8px;
 }
 
+.page-internal:not(.page-gallery) .building-intro .page-title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  text-align: center !important;
+  text-wrap: balance;
+}
+
+.page-internal:not(.page-gallery) .building-intro .page-title::after {
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+.page-internal:not(.page-gallery) .building-intro {
+  text-align: center;
+  text-align-last: center;
+}
+
+.page-internal:not(.page-gallery) .building-intro .section-lead {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-align-last: center;
+}
+
+.page-gallery .building-intro .page-title {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  text-align: center !important;
+  text-wrap: balance;
+}
+
+.page-gallery .building-intro .page-title::after {
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 28px;
+  margin-bottom: 28px;
+}
+
+.page-gallery .building-intro {
+  text-align: center;
+  text-align-last: center;
+}
+
+.page-gallery .building-intro .section-lead {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-align-last: center;
+}
+
 .logos-section {
   text-align: center;
 }
@@ -493,22 +617,29 @@ a:focus-visible {
   margin-top: 18px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-  align-items: center;
+  gap: 22px;
+  align-items: stretch;
 }
 
 .logos-grid img {
-  max-width: 140px;
   width: 100%;
-  height: 48px;
+  max-width: 220px;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  padding: 28px;
+  background: rgba(34, 197, 94, 0.10);
+  border: 2px solid rgba(34, 197, 94, 0.55);
+  border-radius: 18px;
   object-fit: contain;
   margin: 0 auto;
   filter: grayscale(0);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
 }
 
 @media (max-width: 900px) {
   .logos-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
   }
 }
 .split {
@@ -874,6 +1005,30 @@ a:focus-visible {
   font-size: 1.4rem;
   letter-spacing: 0.6px;
   margin: 14px 0 10px;
+}
+
+.page-gallery .gallery-block-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  margin: 10px auto 14px;
+  padding: 7px 14px;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.06);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.page-gallery .gallery-block-title::before {
+  content: none;
+}
+
+.page-gallery .gallery-block-title::after {
+  content: none;
 }
 
 .carousel-track {
@@ -1400,6 +1555,47 @@ input, select, textarea {
     grid-template-columns: 1fr;
   }
 
+}
+
+@media (max-width: 900px) {
+  body.home-page .hero {
+    align-items: center;
+    padding: 28px 0 24px;
+  }
+
+  body.home-page .hero-copy,
+  body.home-page .hero-media {
+    align-self: center;
+  }
+
+  body.home-page .hero .img-frame {
+    height: min(38vh, 360px);
+    min-height: 220px;
+  }
+
+  body.home-page .hero-img {
+    transform: translateY(10px);
+  }
+
+  body.home-page .hero-trust-right {
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  body.home-page .container {
+    width: min(1120px, 90%);
+  }
+
+  body.home-page .hero > .container {
+    width: min(1120px, 92%);
+    padding-inline: clamp(8px, 3.6vw, 16px);
+  }
+
+  body.home-page .hero .img-frame {
+    height: min(34vh, 300px);
+    min-height: 200px;
+  }
 }
 
 /*

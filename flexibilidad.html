@@ -62,7 +62,7 @@
         <div class="media-grid plans-grid">
           <div class="media-card">
             <div class="img-frame">
-              <img id="img-plan-pb" alt="" />
+              <img class="lightbox-img" id="img-plan-pb" alt="" onclick="openLightbox(this)" />
               <div class="img-fallback" aria-hidden="true"></div>
             </div>
             <div class="media-body">
@@ -71,7 +71,7 @@
           </div>
           <div class="media-card">
             <div class="img-frame">
-              <img id="img-plan-p1" alt="" />
+              <img class="lightbox-img" id="img-plan-p1" alt="" onclick="openLightbox(this)" />
               <div class="img-fallback" aria-hidden="true"></div>
             </div>
             <div class="media-body">
@@ -191,6 +191,14 @@
     </div>
   </div>
 
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" data-close="lightbox" aria-hidden="true"></div>
+    <div class="lightbox-card" role="dialog" aria-modal="true">
+      <button class="lightbox-close" type="button" data-close="lightbox" aria-label="Cerrar">×</button>
+      <img id="lightbox-image" alt="" />
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container footer-inner footer-contact">
       <div class="footer-brand">
@@ -214,7 +222,6 @@
   <script src="main.js?v=20260302a"></script>
 </body>
 </html>
-
 
 
 
