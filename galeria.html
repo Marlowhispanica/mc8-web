@@ -20,6 +20,15 @@
   <meta name="twitter:description" content="Galería de espacios interiores, exteriores y terrazas de MC8 en Marie Curie 8, Málaga TechPark. Disponible en ES/EN." />
   <meta name="twitter:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
   <link rel="stylesheet" href="styles.css" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17547175482"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17547175482');
+</script>
 </head>
 <body class="page-internal page-gallery">
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -115,7 +124,7 @@
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="schedule-title">
       <div class="modal-header">
         <h2 id="schedule-title" data-i18n="schedule.h2">Agendar visita</h2>
-        <button class="modal-close" type="button" data-close="schedule" aria-label="Cerrar">×</button>
+        <button class="modal-close" type="button" data-close="schedule" aria-label="Cerrar">&times;</button>
       </div>
       <p class="modal-sub" data-i18n="schedule.sub">Déjanos tu disponibilidad y organizaremos la visita</p>
       <form id="schedule-form" class="lead-form" novalidate action="https://api.web3forms.com/submit" method="POST">
@@ -176,10 +185,10 @@
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-backdrop" data-close="lightbox" aria-hidden="true"></div>
     <div class="lightbox-card" role="dialog" aria-modal="true">
-      <button class="lightbox-nav prev" type="button" data-lightbox="prev" aria-label="Anterior">‹</button>
-      <button class="lightbox-close" type="button" data-close="lightbox" aria-label="Cerrar">×</button>
+      <button class="lightbox-nav prev" type="button" data-lightbox="prev" aria-label="Anterior">&#8249;</button>
+      <button class="lightbox-close" type="button" data-close="lightbox" aria-label="Cerrar">&times;</button>
       <img id="lightbox-image" alt="" />
-      <button class="lightbox-nav next" type="button" data-lightbox="next" aria-label="Siguiente">›</button>
+      <button class="lightbox-nav next" type="button" data-lightbox="next" aria-label="Siguiente">&#8250;</button>
     </div>
   </div>
 
@@ -188,7 +197,7 @@
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lead-title">
       <div class="modal-header">
         <h2 id="lead-title" data-i18n="cta.h2">Solicita información y agenda una visita</h2>
-        <button class="modal-close" type="button" data-close="lead" aria-label="Cerrar">×</button>
+        <button class="modal-close" type="button" data-close="lead" aria-label="Cerrar">&times;</button>
       </div>
       <p class="modal-sub" data-i18n="cta.p1">Te enviamos el dossier completo y te ayudamos a definir la configuración ideal para tu equipo</p>
       <form id="lead-form" class="lead-form" novalidate action="https://api.web3forms.com/submit" method="POST">
@@ -269,6 +278,7 @@
   <script src="main.js?v=20260302a"></script>
 </body>
 </html>
+
 
 
 
