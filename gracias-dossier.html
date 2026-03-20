@@ -1,38 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/favicon.ico?v=1">
-  <title data-i18n="thanksPage.title">Gracias por tu solicitud | MC8 Malaga TechPark</title>
-  <meta name="description" content="Gracias por contactar con MC8. Hemos recibido tu solicitud correctamente." />
-  <link rel="canonical" href="https://mc8malaga.com/gracias.html" />
-  <link rel="alternate" hreflang="es" href="https://mc8malaga.com/gracias.html#es" />
-  <link rel="alternate" hreflang="en" href="https://mc8malaga.com/gracias.html#en" />
-  <link rel="alternate" hreflang="x-default" href="https://mc8malaga.com/gracias.html" />
+  <title>Abriendo dossier | MC8 Malaga TechPark</title>
+  <meta name="description" content="Estamos abriendo el dossier comercial de MC8." />
+  <link rel="canonical" href="https://mc8malaga.com/gracias-dossier.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mc8malaga.com/gracias.html" />
-  <meta property="og:title" content="Gracias por tu solicitud | MC8 Malaga TechPark" />
-  <meta property="og:description" content="Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve." />
+  <meta property="og:url" content="https://mc8malaga.com/gracias-dossier.html" />
+  <meta property="og:title" content="Abriendo dossier | MC8 Malaga TechPark" />
+  <meta property="og:description" content="Acceso al dossier comercial de MC8." />
   <meta property="og:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Gracias por tu solicitud | MC8 Malaga TechPark" />
-  <meta name="twitter:description" content="Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve." />
+  <meta name="twitter:title" content="Abriendo dossier | MC8 Malaga TechPark" />
+  <meta name="twitter:description" content="Acceso al dossier comercial de MC8." />
   <meta name="twitter:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
   <link rel="stylesheet" href="styles.css" />
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17547175482"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17547175482');
-</script>
 </head>
 <body class="page-internal">
   <a class="skip-link" href="#main">Saltar al contenido</a>
-
   <header class="site-header">
     <div class="container header-inner header-three">
       <div class="brand">
@@ -66,16 +53,13 @@
   <main id="main">
     <section class="section thanks-section">
       <div class="container thanks-wrap">
-        <div class="thanks-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img" aria-label="Solicitud enviada correctamente" data-i18n="thanksPage.iconAria" data-i18n-attr="aria-label">
-            <circle cx="32" cy="32" r="30"></circle>
-            <path d="M19 33.5L28 42.5L46 24.5"></path>
-          </svg>
-        </div>
-        <h1 class="page-title thanks-title" data-i18n="thanksPage.h1">Gracias por tu solicitud</h1>
-        <p class="section-lead thanks-subtitle" data-i18n="thanksPage.subtitle">Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve.</p>
+        <h1 class="page-title thanks-title">Abriendo dossier comercial...</h1>
+        <p class="section-lead thanks-subtitle">
+          Si no se abre automaticamente, utiliza el boton de descarga.
+        </p>
         <div class="thanks-actions">
-          <a class="btn btn-primary" href="/index.html" data-i18n="thanksPage.backHome">Volver al inicio</a>
+          <a class="btn btn-primary" href="/assets/pdf/dossier-mc8.pdf" target="_blank" rel="noopener">Descargar dossier</a>
+          <a class="btn btn-secondary" href="/index.html">Volver al inicio</a>
         </div>
       </div>
     </section>
@@ -99,10 +83,12 @@
       </div>
     </div>
   </footer>
+
   <script src="main.js?v=20260302a"></script>
-  <!-- Event snippet for Lead formulario MC8 conversion page -->
   <script>
-    gtag('event', 'conversion', {'send_to': 'AW-17547175482/ivvWCLXG4oMcELrMkq9B'});
+    window.setTimeout(function () {
+      window.location.href = "/assets/pdf/dossier-mc8.pdf";
+    }, 350);
   </script>
 </body>
 </html>

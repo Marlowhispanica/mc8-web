@@ -1618,14 +1618,17 @@ input, select, textarea {
 /* Header nav pills layout */
 .header-inner.header-three {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-template-areas: "brand nav lang";
   align-items: center;
   gap: 16px;
 }
 
 .header-inner.header-three .brand { grid-area: brand; }
-.header-inner.header-three .top-nav { grid-area: nav; }
+.header-inner.header-three .top-nav {
+  grid-area: nav;
+  min-width: 0;
+}
 .header-inner.header-three .lang-switch { grid-area: lang; justify-self: end; }
 
 .top-nav.nav-pills {
@@ -1634,6 +1637,7 @@ input, select, textarea {
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .top-nav.nav-pills a {
@@ -1645,6 +1649,7 @@ input, select, textarea {
   font-size: 0.9rem;
   background: transparent;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {

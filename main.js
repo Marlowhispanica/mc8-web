@@ -45,7 +45,7 @@ const i18n = {
       trust4: { value: "Dic 2025", label: "disponibilidad" }
     },
     header: { cta: "Solicitar información" },
-    nav: { home: "Inicio", specs: "Edificio", garden: "Jardín y terrazas", ecosystem: "Ecosistema", flex: "Flexibilidad", gallery: "Galería" },
+    nav: { home: "Inicio", specs: "Edificio", garden: "Jardín y terrazas", ecosystem: "Ecosistema", flex: "Flexibilidad", gallery: "Galería", dossier: "Dossier" },
     design: {
       h2: "Diseñado para trabajar mejor",
       p1: "Un edificio que combina eficiencia operativa y bienestar: luz natural, ventilación, terrazas y distribuciones que priorizan el rendimiento y la retención del talento",
@@ -322,7 +322,7 @@ const i18n = {
       trust4: { value: "Dec 2025", label: "availability" }
     },
     header: { cta: "Request information" },
-    nav: { home: "Home", specs: "Building", garden: "Garden & terraces", ecosystem: "Ecosystem", flex: "Flexibility", gallery: "Gallery" },
+    nav: { home: "Home", specs: "Building", garden: "Garden & terraces", ecosystem: "Ecosystem", flex: "Flexibility", gallery: "Gallery", dossier: "Dossier" },
     design: {
       h2: "Designed to work better",
       p1: "A building that combines operational efficiency and wellbeing: natural light, ventilation, terraces, and layouts that prioritize performance and talent retention",
@@ -661,6 +661,10 @@ function applyImages() {
 }
 
 function setMeta(lang) {
+  const path = (window.location.pathname || "").toLowerCase();
+  const isHome = path.endsWith("/") || path.endsWith("/index.html") || path === "";
+  if (!isHome) return;
+
   const meta = i18n[lang].meta;
   document.title = meta.title;
 
@@ -1392,8 +1396,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
 
 
 
