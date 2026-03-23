@@ -1294,8 +1294,9 @@ function setupPlansModal() {
 let dossierFormInitialized = false;
 function setupDossierForm() {
   if (dossierFormInitialized) return;
-  const page = (window.location.pathname.split("/").pop() || "").toLowerCase();
-  if (page !== "dossier.html") return;
+  const path = (window.location.pathname || "").toLowerCase().replace(/\/+$/, "");
+  const page = path.split("/").pop() || "";
+  if (page !== "dossier.html" && page !== "dossier") return;
 
   const form = document.querySelector("form.lead-form[action='https://api.web3forms.com/submit']");
   if (!form) return;
@@ -1423,7 +1424,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
 
 
 
