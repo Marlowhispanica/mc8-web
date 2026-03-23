@@ -864,7 +864,7 @@ function setFormRedirect(form, key) {
   void key;
   const input = form.querySelector("input[name='redirect']");
   if (!input) return;
-  input.value = "/gracias.html";
+  input.value = "gracias.html";
 }
 
 async function submitWeb3Form(form, statusEl, submitBtn) {
@@ -894,7 +894,7 @@ async function submitWeb3Form(form, statusEl, submitBtn) {
       throw new Error("form_submit_failed");
     }
 
-    window.location.assign("/gracias.html");
+    window.location.assign("gracias.html");
   } catch (e) {
     if (statusEl) {
       statusEl.classList.remove("success");
@@ -1425,7 +1425,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
 
 
 
