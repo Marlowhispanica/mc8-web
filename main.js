@@ -867,6 +867,43 @@ function setFormRedirect(form, key) {
   input.value = "/gracias.html";
 }
 
+async function submitWeb3Form(form, statusEl, submitBtn) {
+  setFormRedirect(form);
+
+  if (statusEl) {
+    statusEl.classList.remove("success");
+    statusEl.textContent = i18n[currentLang].status.loading;
+  }
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method || "POST",
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    let payload = null;
+    try {
+      payload = await response.json();
+    } catch (e) {}
+
+    if (!response.ok || (payload && payload.success === false)) {
+      throw new Error("form_submit_failed");
+    }
+
+    window.location.assign("/gracias.html");
+  } catch (e) {
+    if (statusEl) {
+      statusEl.classList.remove("success");
+      statusEl.textContent = i18n[currentLang].status.error;
+    }
+    if (submitBtn) submitBtn.disabled = false;
+  }
+}
+
 function showFormSuccess(statusEl) {
   if (!statusEl) return;
   statusEl.classList.add("success");
@@ -961,17 +998,14 @@ function setupForm() {
     }
 
     setFormRedirect(form, "lead");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
       if (!validate()) {
-        e.preventDefault();
         return;
       }
 
-      if (status) {
-        status.classList.remove("success");
-        status.textContent = i18n[currentLang].status.loading;
-      }
-      if (submitBtn) submitBtn.disabled = true;
+      await submitWeb3Form(form, status, submitBtn);
     });
 
     formInitialized = true;
@@ -1075,17 +1109,14 @@ function setupScheduleModal() {
     const dateInput = document.getElementById("visit-date");
     if (dateInput) dateInput.setAttribute("min", today);
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
       if (!validate()) {
-        e.preventDefault();
         return;
       }
 
-      if (status) {
-        status.classList.remove("success");
-        status.textContent = i18n[currentLang].status.loading;
-      }
-      if (submitBtn) submitBtn.disabled = true;
+      await submitWeb3Form(form, status, submitBtn);
     });
 
   scheduleInitialized = true;
@@ -1249,21 +1280,38 @@ function setupPlansModal() {
     }
 
     setFormRedirect(form, "plans");
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
       if (!validate()) {
-        e.preventDefault();
         return;
       }
 
-      if (status) {
-        status.classList.remove("success");
-        status.textContent = i18n[currentLang].status.loading;
-      }
-      if (submitBtn) submitBtn.disabled = true;
+      await submitWeb3Form(form, status, submitBtn);
     });
 
     plansModalInitialized = true;
   }
+
+let dossierFormInitialized = false;
+function setupDossierForm() {
+  if (dossierFormInitialized) return;
+  const page = (window.location.pathname.split("/").pop() || "").toLowerCase();
+  if (page !== "dossier.html") return;
+
+  const form = document.querySelector("form.lead-form[action='https://api.web3forms.com/submit']");
+  if (!form) return;
+
+  const submitBtn = form.querySelector("button[type='submit']");
+  setFormRedirect(form, "dossier");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    await submitWeb3Form(form, null, submitBtn);
+  });
+
+  dossierFormInitialized = true;
+}
 
 let tabsInitialized = false;
 function setupTabs() {
@@ -1346,6 +1394,7 @@ function init() {
     window.setLang(target);
   });
   setupForm();
+  setupDossierForm();
   setupCarousel();
   setupNewsCarousel();
   setupScheduleModal();
@@ -1376,8 +1425,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
 
 
 
