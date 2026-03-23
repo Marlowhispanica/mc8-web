@@ -25,10 +25,10 @@ const imgIds = {
 const i18n = {
   es: {
     meta: {
-      title: "MC8 · Málaga TechPark — Sede corporativa",
-      description: "Alquiler de edificio de oficinas premium en Málaga TechPark. Flexibilidad total, sostenibilidad, espacios exteriores y bienestar. Solicita información",
-      ogTitle: "MC8 · Málaga TechPark — Sede corporativa",
-      ogDescription: "Edificio corporativo premium en Málaga TechPark. Flexibilidad, bienestar y sostenibilidad. Solicita información"
+      title: "Oficinas premium en Malaga TechPark | MC8 Marie Curie 8",
+      description: "Edificio corporativo en alquiler en Malaga TechPark: 2.082 m2, 600 m2 de terraza y espacios flexibles para empresas. Solicita informacion.",
+      ogTitle: "Oficinas premium en Malaga TechPark | MC8 Marie Curie 8",
+      ogDescription: "Edificio corporativo en alquiler en Malaga TechPark: 2.082 m2, 600 m2 de terraza y espacios flexibles para empresas. Solicita informacion."
     },
     hero: {
       eyebrow: "Un edificio sin límites",
@@ -302,10 +302,10 @@ const i18n = {
   },
   en: {
     meta: {
-      title: "MC8 · Málaga TechPark — Corporate Headquarters",
-      description: "Premium office building for lease in Málaga TechPark. Total flexibility, sustainability, outdoor spaces, and wellbeing. Request information",
-      ogTitle: "MC8 · Málaga TechPark — Corporate Headquarters",
-      ogDescription: "Premium corporate building in Málaga TechPark. Flexibility, wellbeing, and sustainability. Request information"
+      title: "Premium Offices in Malaga TechPark | MC8 Marie Curie 8",
+      description: "Premium office building for lease in Malaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information.",
+      ogTitle: "Premium Offices in Malaga TechPark | MC8 Marie Curie 8",
+      ogDescription: "Premium office building for lease in Malaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information."
     },
     hero: {
       eyebrow: "A building without limits",
@@ -864,7 +864,7 @@ function setFormRedirect(form, key) {
   void key;
   const input = form.querySelector("input[name='redirect']");
   if (!input) return;
-  input.value = "https://mc8malaga.com/gracias.html";
+  input.value = "/gracias.html";
 }
 
 function showFormSuccess(statusEl) {
@@ -961,13 +961,6 @@ function setupForm() {
     }
 
     setFormRedirect(form, "lead");
-    const successKey = getSuccessKey();
-    if (successKey === "lead") {
-      if (dossierLink) dossierLink.classList.remove("hidden");
-      if (dossierLink) dossierLink.setAttribute("href", "#");
-      showFormSuccess(status);
-    }
-
     form.addEventListener("submit", (e) => {
       if (!validate()) {
         e.preventDefault();
@@ -1078,12 +1071,6 @@ function setupScheduleModal() {
     }
 
     setFormRedirect(form, "schedule");
-    const successKey = getSuccessKey();
-    if (successKey === "schedule") {
-      openModal();
-      showFormSuccess(status);
-    }
-
     const today = new Date().toISOString().split("T")[0];
     const dateInput = document.getElementById("visit-date");
     if (dateInput) dateInput.setAttribute("min", today);
@@ -1139,13 +1126,12 @@ function setupLeadModal() {
       btn.addEventListener("click", closeModal);
     });
 
-    const successKey = getSuccessKey();
     let openParam = null;
     try {
       const params = new URLSearchParams(window.location.search);
       openParam = params.get("open");
     } catch (e) {}
-    if (successKey === "lead" || openParam === "lead") openModal();
+    if (openParam === "lead") openModal();
 
     leadModalInitialized = true;
   }
@@ -1263,12 +1249,6 @@ function setupPlansModal() {
     }
 
     setFormRedirect(form, "plans");
-    const successKey = getSuccessKey();
-    if (successKey === "plans") {
-      openModal();
-      showFormSuccess(status);
-    }
-
     form.addEventListener("submit", (e) => {
       if (!validate()) {
         e.preventDefault();
@@ -1396,8 +1376,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
 
 
 
