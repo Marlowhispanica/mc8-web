@@ -861,14 +861,12 @@ function validatePhone(value) {
 }
 
 function setFormRedirect(form, key) {
-  void key;
   const input = form.querySelector("input[name='redirect']");
   if (!input) return;
-  input.value = "gracias.html";
+  input.value = key === "dossier" ? "/gracias-dossier.html" : "/gracias.html";
 }
 
-async function submitWeb3Form(form, statusEl, submitBtn) {
-  setFormRedirect(form);
+async function submitWeb3Form(form, statusEl, submitBtn, successPath = "/gracias.html") {
 
   if (statusEl) {
     statusEl.classList.remove("success");
@@ -894,7 +892,7 @@ async function submitWeb3Form(form, statusEl, submitBtn) {
       throw new Error("form_submit_failed");
     }
 
-    window.location.assign("gracias.html");
+    window.location.assign(successPath);
   } catch (e) {
     if (statusEl) {
       statusEl.classList.remove("success");
@@ -1005,7 +1003,7 @@ function setupForm() {
         return;
       }
 
-      await submitWeb3Form(form, status, submitBtn);
+      await submitWeb3Form(form, status, submitBtn, "/gracias.html");
     });
 
     formInitialized = true;
@@ -1116,7 +1114,7 @@ function setupScheduleModal() {
         return;
       }
 
-      await submitWeb3Form(form, status, submitBtn);
+      await submitWeb3Form(form, status, submitBtn, "/gracias.html");
     });
 
   scheduleInitialized = true;
@@ -1287,7 +1285,7 @@ function setupPlansModal() {
         return;
       }
 
-      await submitWeb3Form(form, status, submitBtn);
+      await submitWeb3Form(form, status, submitBtn, "/gracias.html");
     });
 
     plansModalInitialized = true;
@@ -1307,7 +1305,7 @@ function setupDossierForm() {
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    await submitWeb3Form(form, null, submitBtn);
+    await submitWeb3Form(form, null, submitBtn, "/gracias-dossier.html");
   });
 
   dossierFormInitialized = true;
@@ -1425,8 +1423,6 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-
 
 
 
