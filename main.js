@@ -160,18 +160,14 @@ const i18n = {
     news: {
       h2: "Noticias actualidad",
       sourceLabel: "Fuente:",
-      n1: "IMEC recibe autorización para construir en Málaga TechPark (17/01/2025)",
-      s1: "Ministerio de Ciencia",
-      n2: "Acuerdo para el centro de innovación de chips de IMEC en Málaga TechPark (16/07/2024)",
-      s2: "Ministerio de Ciencia",
-      n3: "Kadans transformará el edificio NODE II en Málaga TechPark (05/02/2024)",
-      s3: "Kadans Science Partner",
-      n4: "Málaga TechPark: impacto económico del 2,3% del PIB andaluz (25/11/2025)",
-      s4: "Junta de Andalucía",
-      n5: "Gobierno, Junta e IMEC firman un MoU para una nueva línea de chips (13/03/2024)",
-      s5: "imec",
-      n6: "Kadans confirma una inversión de 30 millones en Málaga TechPark (05/12/2024)",
-      s6: "Cadena SER"
+      n1: "Málaga TechPark bate récords con 29.000 empleos e ingresos al alza (16/03/2026)",
+      s1: "Euro Weekly News",
+      n2: "Las empresas de Málaga TechPark superan los 4.800 millones de facturación en 2025 (16/03/2026)",
+      s2: "Economía Digital",
+      n3: "IMEC invertirá 615 millones en su primer centro de semiconductores en Málaga (09/10/2025)",
+      s3: "Vida Económica",
+      n4: "Blink inaugura 105 apartamentos flexibles en Málaga TechPark para empresas (24/09/2025)",
+      s4: "Vida Económica"
     },
     ecosystemLogos: {
       h2: "Empresas del ecosistema",
@@ -437,18 +433,14 @@ const i18n = {
     news: {
       h2: "News update",
       sourceLabel: "Source:",
-      n1: "IMEC receives authorization to build at Málaga TechPark (Jan 17, 2025)",
-      s1: "Spanish Ministry of Science",
-      n2: "Agreement for IMEC's chip innovation center in Málaga TechPark (Jul 16, 2024)",
-      s2: "Spanish Ministry of Science",
-      n3: "Kadans will transform the NODE II building in Málaga TechPark (Feb 5, 2024)",
-      s3: "Kadans Science Partner",
-      n4: "Málaga TechPark: economic impact equals 2.3% of Andalusia's GDP (Nov 25, 2025)",
-      s4: "Regional Government of Andalusia",
-      n5: "Government, Andalusia and imec sign MoU for a new chip pilot line (Mar 13, 2024)",
-      s5: "imec",
-      n6: "Kadans confirms a €30M investment in Málaga TechPark (Dec 5, 2024)",
-      s6: "Cadena SER"
+      n1: "Málaga TechPark shatters records with 29,000 jobs and soaring revenues (Mar 16, 2026)",
+      s1: "Euro Weekly News",
+      n2: "Málaga TechPark companies surpass €4.8 billion in revenue in 2025 (Mar 16, 2026)",
+      s2: "Economía Digital",
+      n3: "IMEC to invest €615 million in its first semiconductor center in Málaga (Oct 9, 2025)",
+      s3: "Vida Económica",
+      n4: "Blink opens 105 flexible apartments in Málaga TechPark for companies (Sep 24, 2025)",
+      s4: "Vida Económica"
     },
     ecosystemLogos: {
       h2: "Ecosystem companies",
@@ -1424,6 +1416,5 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
 
 
