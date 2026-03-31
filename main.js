@@ -1,4 +1,4 @@
-const imageMap = {
+﻿const imageMap = {
   hero: "assets/exterior-building-garden-wide.jpg",
   terrace: "assets/rooftop-terrace-trees-view.jpg",
   exterior: "assets/OLD-render-terrace.jpg",
@@ -25,16 +25,16 @@ const imgIds = {
 const i18n = {
   es: {
     meta: {
-      title: "Oficinas premium en Malaga TechPark | MC8 Marie Curie 8",
-      description: "Edificio corporativo en alquiler en Malaga TechPark: 2.082 m2, 600 m2 de terraza y espacios flexibles para empresas. Solicita informacion.",
-      ogTitle: "Oficinas premium en Malaga TechPark | MC8 Marie Curie 8",
-      ogDescription: "Edificio corporativo en alquiler en Malaga TechPark: 2.082 m2, 600 m2 de terraza y espacios flexibles para empresas. Solicita informacion."
+      title: "Oficinas premium en Málaga TechPark | MC8 Marie Curie 8",
+      description: "Edificio en alquiler en Málaga TechPark: 2.082 m², 600 m² de terraza y espacios flexibles para empresas. Solicita información.",
+      ogTitle: "Oficinas premium en Málaga TechPark | MC8 Marie Curie 8",
+      ogDescription: "Edificio en alquiler en Málaga TechPark: 2.082 m², 600 m² de terraza y espacios flexibles para empresas. Solicita información."
     },
     hero: {
       eyebrow: "Un edificio sin límites",
       h1: "Una nueva forma de entender la oficina",
       subline: "Un edificio singular, flexible y preparado para evolucionar con tu empresa",
-      sub: "",
+      sub: "Activo para compañías que priorizan imagen, flexibilidad operativa y una implantación de alto nivel dentro de Málaga TechPark.",
       cta1: "Solicitar información",
       cta2: "Agendar visita",
       cta3: "Planos a medida",
@@ -42,7 +42,10 @@ const i18n = {
       trust1: { value: "2.082 m²", label: "superficie total" },
       trust2: { value: "1.482 m²", label: "SBA" },
       trust3: { value: "600 m²", label: "terraza" },
-      trust4: { value: "Dic 2025", label: "disponibilidad" }
+      trust4: { value: "Dic 2025", label: "disponibilidad" },
+      lease1: { value: "330 m²", label: "alquiler mínimo SBA" },
+      lease2: { value: "1.482 m²", label: "alquiler máximo SBA" },
+      lease3: { value: "Dic 2025", label: "disponibilidad" }
     },
     header: { cta: "Solicitar información" },
     nav: { home: "Inicio", specs: "Edificio", garden: "Jardín y terrazas", ecosystem: "Ecosistema", flex: "Flexibilidad", gallery: "Galería", dossier: "Dossier" },
@@ -51,7 +54,7 @@ const i18n = {
       p1: "Un edificio que combina eficiencia operativa y bienestar: luz natural, ventilación, terrazas y distribuciones que priorizan el rendimiento y la retención del talento",
       li1: "Plantas profundas, flexibles y muy eficientes",
       li2: "Espacios colaborativos y zonas de concentración",
-      li3: "Imagen corporativa premium y representativa",
+      li3: "Imagen premium y representativa",
       stat1: { value: "600 m²", label: "terraza cubierta" },
       stat2: { value: "6", label: "cargadores eléctricos" },
       stat3: { value: "51", label: "plazas de parking" }
@@ -75,7 +78,7 @@ const i18n = {
         title: "Valor para la empresa",
         l1: "Mejora del bienestar y la productividad",
         l2: "Atractivo para captación y retención de talento",
-        l3: "Refuerzo de cultura corporativa y employer branding"
+        l3: "Refuerzo de cultura de empresa y employer branding"
       }
     },
     flex: {
@@ -111,7 +114,7 @@ const i18n = {
       m1: { value: "+680", label: "empresas" },
       m2: { value: "+70", label: "compañías internacionales" },
       m3: { value: "+25.100", label: "empleados" },
-      m4: { value: "+3.400 m²", label: "facturados/año" }
+      m4: { value: "+3.400 M EUR", label: "facturados/año" }
     },
     services: {
       h2: "Servicios del edificio",
@@ -135,7 +138,7 @@ const i18n = {
         title: "Arquitectura y diseño",
         l1: "Proyecto firmado por Ruiz Granados Arquitectos",
         l2: "diseño sobrio, atemporal y representativo",
-        l3: "Imagen corporativa sólida para empresas que buscan posicionamiento"
+        l3: "Imagen sólida para empresas que buscan posicionamiento"
       },
       b2: {
         title: "Prestaciones técnicas",
@@ -151,6 +154,7 @@ const i18n = {
         l3: "Placas fotovoltaicas",
         l4: "Movilidad sostenible (bicicletas, cargadores eléctricos)"
       },
+      compareRangeLabel: "Deslizador comparativo antes y después",
       kpiTitle: "Datos clave",
       k1: { title: "Plantas", p1: "PB", p2: "P1", p3: "Terraza" },
       k2: "Superficie total: 2.082 m²",
@@ -174,7 +178,7 @@ const i18n = {
       sub: "Algunas compañías con presencia en Málaga TechPark"
     },
     testi: {
-      quote: "“Un edificio que combina imagen corporativa, bienestar y flexibilidad real para equipos en crecimiento.”",
+      quote: "“Un edificio que combina imagen, bienestar y flexibilidad real para equipos en crecimiento.”",
       author: "Director de Real Estate - Marlow Hispánica SL"
     },
     plans: {
@@ -184,7 +188,7 @@ const i18n = {
       company: "Empresa",
       role: "Cargo en la empresa",
       employees: "Número estimado de trabajadores",
-      email: "Email corporativo",
+      email: "Email profesional",
       phone: "Teléfono",
       area: "m² aproximados",
       date: "Fecha objetivo de entrada",
@@ -202,7 +206,7 @@ const i18n = {
       sub: "Déjanos tu disponibilidad y organizaremos la visita",
       name: "Nombre y apellidos",
       company: "Empresa",
-      email: "Email corporativo",
+      email: "Email profesional",
       phone: "Teléfono",
       date: "Fecha preferida",
       time: "Franja horaria",
@@ -222,7 +226,7 @@ const i18n = {
     form: {
       name: "Nombre y apellidos",
       company: "Empresa",
-      email: "Email corporativo",
+      email: "Email profesional",
       phone: "Teléfono",
       area: "m² aproximados",
       date: "Fecha objetivo de entrada",
@@ -234,9 +238,9 @@ const i18n = {
     },
     footer: { rights: "Todos los derechos reservados" },
     thanksPage: {
-      title: "Gracias por tu solicitud | MC8 Malaga TechPark",
+      title: "Gracias por tu solicitud | MC8 Málaga TechPark",
       h1: "Gracias por tu solicitud",
-      subtitle: "Hemos recibido tu informacion correctamente. Nuestro equipo se pondra en contacto contigo en breve.",
+      subtitle: "Hemos recibido tu información correctamente. Nuestro equipo se pondrá en contacto contigo en breve.",
       iconAria: "Solicitud enviada correctamente",
       backHome: "Volver al inicio"
     },
@@ -273,7 +277,7 @@ const i18n = {
     },
     errors: {
       required: "Campo obligatorio",
-      email: "Introduce un email corporativo válido",
+      email: "Introduce un email profesional válido",
       phone: "Introduce un teléfono válido",
       rgpd: "Debes aceptar la política de privacidad"
     },
@@ -298,10 +302,10 @@ const i18n = {
   },
   en: {
     meta: {
-      title: "Premium Offices in Malaga TechPark | MC8 Marie Curie 8",
-      description: "Premium office building for lease in Malaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information.",
-      ogTitle: "Premium Offices in Malaga TechPark | MC8 Marie Curie 8",
-      ogDescription: "Premium office building for lease in Malaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information."
+      title: "Premium Offices in Málaga TechPark | MC8 Marie Curie 8",
+      description: "Premium office building for lease in Málaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information.",
+      ogTitle: "Premium Offices in Málaga TechPark | MC8 Marie Curie 8",
+      ogDescription: "Premium office building for lease in Málaga TechPark: 2,082 sqm, 600 sqm terrace, and flexible spaces for companies. Request information."
     },
     hero: {
       eyebrow: "A building without limits",
@@ -315,7 +319,10 @@ const i18n = {
       trust1: { value: "2,082 m²", label: "total area" },
       trust2: { value: "1,482 m²", label: "GFA" },
       trust3: { value: "600 m²", label: "terrace" },
-      trust4: { value: "Dec 2025", label: "availability" }
+      trust4: { value: "Dec 2025", label: "availability" },
+      lease1: { value: "330 m²", label: "minimum lease GFA" },
+      lease2: { value: "1,482 m²", label: "maximum lease GFA" },
+      lease3: { value: "Dec 2025", label: "availability" }
     },
     header: { cta: "Request information" },
     nav: { home: "Home", specs: "Building", garden: "Garden & terraces", ecosystem: "Ecosystem", flex: "Flexibility", gallery: "Gallery", dossier: "Dossier" },
@@ -424,6 +431,7 @@ const i18n = {
         l3: "Photovoltaic panels",
         l4: "Sustainable mobility (bikes, EV chargers)"
       },
+      compareRangeLabel: "Before and after comparison slider",
       kpiTitle: "Key facts",
       k1: { title: "Floors", p1: "GF", p2: "L1", p3: "Terrace" },
       k2: "Total area: 2,082 m²",
@@ -507,7 +515,7 @@ const i18n = {
     },
     footer: { rights: "All rights reserved" },
     thanksPage: {
-      title: "Thank you for your request | MC8 Malaga TechPark",
+      title: "Thank you for your request | MC8 Málaga TechPark",
       h1: "Thank you for your request",
       subtitle: "We have received your information correctly. Our team will contact you shortly.",
       iconAria: "Request sent successfully",
@@ -1373,6 +1381,34 @@ function setupLightbox() {
   lightboxInitialized = true;
 }
 
+let compareInitialized = false;
+function setupImageCompare() {
+  if (compareInitialized) return;
+  const compares = document.querySelectorAll("[data-compare]");
+  if (!compares.length) return;
+
+  compares.forEach(compare => {
+    const overlay = compare.querySelector("[data-compare-overlay]");
+    const divider = compare.querySelector("[data-compare-divider]");
+    const range = compare.querySelector("[data-compare-range]");
+    if (!overlay || !divider || !range) return;
+
+    const setSplit = (value) => {
+      const safeValue = Math.max(0, Math.min(100, Number(value) || 0));
+      overlay.style.width = `${safeValue}%`;
+      divider.style.left = `${safeValue}%`;
+      range.value = String(safeValue);
+    };
+
+    setSplit(range.value || compare.dataset.start || 50);
+
+    range.addEventListener("input", () => setSplit(range.value));
+    range.addEventListener("change", () => setSplit(range.value));
+  });
+
+  compareInitialized = true;
+}
+
 function init() {
   applyImages();
   const lang = getLangFromHash();
@@ -1393,6 +1429,7 @@ function init() {
   setupPlansModal();
   setupTabs();
   setupLightbox();
+  setupImageCompare();
   setupStickyLeadCta();
   updateNavLinks(lang);
 

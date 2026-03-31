@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +19,13 @@
   <meta name="twitter:title" content="Jardín y terrazas | Oficinas MC8 Málaga TechPark" />
   <meta name="twitter:description" content="Terrazas y zonas exteriores para trabajo y bienestar en las oficinas MC8 de Marie Curie 8, Málaga TechPark. ES/EN." />
   <meta name="twitter:image" content="https://mc8malaga.com/assets/exterior-building-corner-sky.jpg" />
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-N9MNLTCQ');</script>
+  <!-- End Google Tag Manager -->
   <link rel="stylesheet" href="styles.css" />
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17547175482"></script>
@@ -31,6 +38,10 @@
 </script>
 </head>
 <body class="page-internal">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9MNLTCQ"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <header class="site-header">
   <div class="container header-inner header-three">
@@ -65,7 +76,7 @@
   <main id="main">
     <section class="section">
       <div class="container">
-        <div class="building-intro">
+        <div class="building-intro page-hero">
           <h1 class="page-title" data-i18n="outdoor.h2">Trabajar al aire libre forma parte de la experiencia MC8</h1>
           <p class="section-lead" data-i18n="outdoor.sub">El proyecto incorpora espacios exteriores de alto valor añadido que amplían la oficina más allá de sus límites tradicionales. Jardines y terrazas se integran como espacios de trabajo, encuentro y descanso</p>
         </div>
@@ -83,10 +94,27 @@
             </div>
           </div>
         </div>
-        <div class="media-card" style="margin-top: 18px;">
-          <div class="img-frame" style="min-height: 460px;">
-            <img src="assets/OLD-render-terrace.jpg" alt="Terraza cubierta del edificio MC8" loading="lazy" />
-            <div class="img-fallback" aria-hidden="true"></div>
+        <div class="compare-card compare-card-hero">
+          <div class="image-compare image-compare-hero" data-compare data-start="52">
+            <img class="compare-image compare-image-base" src="assets/OLD-rooftop-terrace-sun.png" alt="Estado previo de la terraza en cubierta del edificio MC8" loading="lazy" />
+            <div class="compare-overlay" data-compare-overlay>
+              <img class="compare-image compare-image-top" src="assets/OLD-render-terrace.jpg" alt="Propuesta renovada de la terraza del edificio MC8" loading="lazy" />
+            </div>
+            <div class="compare-divider" data-compare-divider aria-hidden="true">
+              <span class="compare-handle"></span>
+            </div>
+            <input
+              class="compare-range"
+              type="range"
+              min="0"
+              max="100"
+              value="52"
+              step="1"
+              data-compare-range
+              data-i18n="building.compareRangeLabel"
+              data-i18n-attr="aria-label"
+              aria-label="Deslizador comparativo antes y después"
+            />
           </div>
         </div>
         <div class="media-grid grid-3">
@@ -147,6 +175,8 @@
   <script src="main.js?v=20260302a"></script>
 </body>
 </html>
+
+
 
 
 
